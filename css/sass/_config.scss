@@ -1,0 +1,15 @@
+@import "compass";
+
+$pm: 10px;
+$hc: 100px;
+
+$color1: #ffffff;
+$color2: #1d4fa5;
+$color3:rgba(100, 99, 100, 0.5);
+$color4: #972aee;
+
+@import 'member';
+@import 'button';
+@import 'header';
+@import 'query';
+@import 'footer';
