@@ -1,6 +1,7 @@
 <?php
+include ('./config/config_exemple.php');
 
-$ar_pages = array(
+/*$ar_pages = array(
     'accueil' => array(
         'title' => 'Bienvenue sur la page d\'accueil de l\'association',
         'libelle_menu' => 'Accueil'
@@ -42,19 +43,17 @@ $ar_pages = array(
 
 ),
 
-);
-$page = 'accueil';
+);*/
+$currentPage = 'accueil';
 
 
 if(isset($_GET['page']) AND !empty($_GET['page']) ){
-    $page = $_GET['page'];
+    $currentPage = $_GET['page'];
 
 }
 
-$title = $ar_pages[$page]['title'];
-
 include ('./includes/layout/header.php');
-include ('./includes/pages/'.$page.'.php');
+include ('./includes/pages/'.$currentPage.'.php');
 include ('./includes/layout/footer.php');
 
 

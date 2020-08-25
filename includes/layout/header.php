@@ -1,9 +1,34 @@
+
+<?php
+
+ //Controller
+ $query = "SELECT * FROM page;";
+ $exec = $bdd->query($query);
+ $pages = $exec->fetchAll();
+
+ $menu = "";
+ foreach ($pages as $page) {
+
+     if ($currentPage == $page["key_file"]) {
+         $currentPageObj = $page;
+         $currentPageClass = "active";
+     } else {
+         $currentPageClass = "";
+     }
+
+     $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./index.php?page=' . $page["key_file"] . '" class="nav-link">' . $page["menu"] . '</a></li>';
+
+ }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo $title; ?></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><?php echo $currentPageObj["metatitle"]; ?></title>
+    <meta name="description" content="<?php echo $currentPageObj["metadescription"]?>"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
@@ -40,15 +65,9 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.php" class="nav-link">Accueil</a></li>
-                <li class="nav-item"><a href="./index.php?page=presentation" class="nav-link">Qui somme nous ?</a></li>
-                <li class="nav-item"><a href="./index.php?page=activites" class="nav-link">Activités</a></li>
-                <li class="nav-item"><a href="./index.php?page=inscription" class="nav-link">Inscription</a></li>
-                <li class="nav-item"><a href="./index.php?page=galerie" class="nav-link">Galerie</a></li>
-                <li class="nav-item"><a href="./index.php?page=blog" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="./index.php?page=contact" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="./index.php?page=news" class="nav-link">News</a></li>
-                <li class="nav-item"><a href="./index.php?page=partenaire" class="nav-link">Partenaires</a></li>
+
+                <?php echo $menu; ?>
+
             </ul>
         </div>
     </div>
