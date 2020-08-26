@@ -323,5 +323,22 @@
 	///ajouter mon code ici //
 
 
+	$('#register_form').on('submit', (event) => {
+
+		if(document.getElementById("register_form").checkValidity()) {
+			var data = new FormData(document.getElementById("register_form"));
+
+			$.ajax({
+				url: "index.php",
+				data: {action:"register", data: JSON.stringify(Object.fromEntries(data))},
+				method: "POST"
+			}).then( function(data) {
+				console.log(data);
+			}).catch(err => console.error(err))
+
+			return false;
+		}
+
+	})
 })(jQuery);
 

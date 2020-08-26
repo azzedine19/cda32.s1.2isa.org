@@ -11,5 +11,5 @@
     </div>
 </section>
 
-<?php include('./includes/templ/formulaire.php');?>
+<?php include('./includes/templ/register.php');?>
 

@@ -30,15 +30,15 @@
                 </div>
             </div>
             <div class="col-md-8 block-9 mb-md-5">
-                <form action="#" class="bg-light p-5 contact-form">
+                <form id="register_form" action="#" class="bg-light p-5 contact-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Login" name="login">
+                        <input type="text" class="form-control" placeholder="Login" name="login" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nom" name="nom">
+                        <input type="text" class="form-control" placeholder="Nom" name="nom" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Prenom" name="prenom">
+                        <input type="text" class="form-control" placeholder="Prénom" name="prenom" required>
                     </div>
                     <div class="form-group">
                         <input type="date" class="form-control" placeholder="Date de naissance" name="dnaiss">
@@ -47,33 +47,33 @@
                         <input type="email" class="form-control" placeholder="Email" name="email">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Adresse1" name="adresse1">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="CDpostal" name="CDpostal">
+                        <input type="text" class="form-control" placeholder="Adresse" name="adresse1">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Ville" name="Ville">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tel" name="Tel">
+                        <input type="text" class="form-control" placeholder="Code postal" name="CDpostal">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Password" name="Password">
+                        <input type="text" class="form-control" placeholder="Téléphone" name="Tel">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Mot de passe" name="Password" required>
                     </div>
                     <div class="col-lg-12">
                         <label for="mobile">Votre cylindrée</label>
                         <br>
-                        <input type="radio" name="cylindree" value="125 cm3" <?php echo isset($cylindree) && $cylindree == "125 cm3" ? 'checked' : '';  ?>/>
+                        <input type="radio" name="cylindree" value="125" <?php echo isset($cylindree) && $cylindree == "125 cm3" ? 'checked' : '';  ?>/>
                         <label for="mobile">125 cm3</label>
                         <hr>
-                        <input type="radio" name="cylindree" value="250 cm3" <?php echo isset($cylindree) && $cylindree == "250 cm3" ? 'checked' : '';  ?>  />
+                        <input type="radio" name="cylindree" value="250" <?php echo isset($cylindree) && $cylindree == "250 cm3" ? 'checked' : '';  ?>  />
                         <label for="mobile">250 cm3</label>
+                        <hr>
+                        <input type="radio" name="cylindree" value=">250" <?php echo isset($cylindree) && $cylindree == "> 250 cm3" ? 'checked' : '';  ?>  />
+                        <label for="mobile"> >250 cm3</label>
                     </div>
-                    <button type="submit" class="register-btn"><?php echo $btn_register; ?></button>
-                    <div class="form-group">
-                        <input type="submit" value="S'inscrire" class="btn btn-primary py-3 px-5">
-                    </div>
+                    <button type="submit" class="btn btn-primary py-3 px-5">S'inscrire</button>
                 </form>
 
             </div>
@@ -85,3 +85,4 @@
         </div>
     </div>
 </section>
+

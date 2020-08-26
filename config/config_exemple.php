@@ -8,7 +8,6 @@ $bdd = new PDO(
 
 //Server local dev
 $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 //Initialisation des variables
 //valeur par default
 $homepage = 'accueil';
