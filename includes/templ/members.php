@@ -1,61 +1,54 @@
-<section class="trainer-section spad">
+<section class="ftco-section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2>Nos membres</h2>
-                </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Membres</span>
+                <h2>Nos membres</h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-trainer-item">
-                    <img src="img/trainer/trainer-1.jpg" alt="">
-                    <div class="trainer-text">
-                        <h5>Patrick Cortez</h5>
-                        <span>Leader</span>
-                        <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                            voluptatem.</p>
-                        <div class="trainer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+        <div class="row d-flex">
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+                    </a>
+                    <div class="text pt-4">
+                        <div class="meta mb-3">
+                            <div><a href="#">Oct. 29, 2019</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                         </div>
+                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+                        <p><a href="#" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-trainer-item">
-                    <img src="img/trainer/trainer-2.jpg" alt="">
-                    <div class="trainer-text">
-                        <h5>Gregory Powers</h5>
-                        <span>Gym coach</span>
-                        <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                            voluptatem.</p>
-                        <div class="trainer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+                    </a>
+                    <div class="text pt-4">
+                        <div class="meta mb-3">
+                            <div><a href="#">Oct. 29, 2019</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                         </div>
+                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+                        <p><a href="#" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-trainer-item">
-                    <img src="img/trainer/trainer-3.jpg" alt="">
-                    <div class="trainer-text">
-                        <h5>Walter Wagner</h5>
-                        <span>Dance trainer</span>
-                        <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                            voluptatem.</p>
-                        <div class="trainer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+                    </a>
+                    <div class="text pt-4">
+                        <div class="meta mb-3">
+                            <div><a href="#">Oct. 29, 2019</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                         </div>
+                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+                        <p><a href="#" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
             </div>

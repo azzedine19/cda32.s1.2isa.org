@@ -1,5 +1,5 @@
 <?php
-include ('./config/config_exemple.php');
+include('./config/config.php');
 /*$ar_pages = array(
     'accueil' => array(
         'title' => 'Bienvenue sur la page d\'accueil de l\'association',
@@ -50,7 +50,13 @@ if(isset($_GET['page']) AND !empty($_GET['page']) ){
     $currentPage = $_GET['page'];
 
 }
-include ('./lib/methode_ajax.php');
+
+
+
+
+include ('./lib/methode_get.php');
+include ('./lib/methode_post.php');
+
 include ('./includes/layout/header.php');
 include ('./includes/pages/'.$currentPage.'.php');
 include ('./includes/layout/footer.php');

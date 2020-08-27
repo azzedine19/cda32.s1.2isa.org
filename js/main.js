@@ -323,17 +323,36 @@
 	///ajouter mon code ici //
 
 
+	//On gere les boutons qui ferme/cache la modal
+	$('#my-modal .modal-footer button, #my-modal .close').on('click', function(){
+
+		$("#my-modal").hide();
+
+	});
+
+	//on affiche la fenetre modal si on a du contenu entre les balises P
+	if($('#my-modal .modal-body p').html().length){
+
+		$("#my-modal").show();
+
+	}
+
 	$('#register_form').on('submit', (event) => {
 
 		if(document.getElementById("register_form").checkValidity()) {
 			var data = new FormData(document.getElementById("register_form"));
 
 			$.ajax({
-				url: "index.php",
+				url: "./lib/methode_ajax.php",
 				data: {action:"register", data: JSON.stringify(Object.fromEntries(data))},
-				method: "POST"
+				method: "POST",
+				dataType: "json"
 			}).then( function(data) {
-				console.log(data);
+
+				$('#my-modal .modal-body p').html(data.data);
+
+				$("#my-modal").show();
+
 			}).catch(err => console.error(err))
 
 			return false;

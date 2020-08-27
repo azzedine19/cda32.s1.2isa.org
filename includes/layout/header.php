@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="css/main.css?v=1.<?php echo time() ?>">
 </head>
 <body>
-
+<?php include ('./includes/templ/modal.php');?>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="index.php">MC<span>MP</span></a>

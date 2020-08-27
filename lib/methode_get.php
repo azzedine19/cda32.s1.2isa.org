@@ -54,8 +54,8 @@ if(isset($_GET['page']) && !empty($_GET['page']) ){
     //securité - Fail include
     if(array_key_exists($_GET['page'], $ar_pages_var)){
 
-        $page_level = $ar_pages_var[$_GET['page']]['page_level'];
-
+        //$page_level = $ar_pages_var[$_GET['page']]['page_level'];
+        $page_level = 0;
         //parametre de page
         //verification du niveau de securité de l'affichage de page
 

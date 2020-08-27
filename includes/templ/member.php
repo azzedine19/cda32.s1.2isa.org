@@ -1,21 +1,11 @@
-<div class="single-member col-lg-4 col-md-6">
-    <div class="single-trainer-item">
-        <img src="img/trainer/trainer-1.jpg" alt="">
-        <div class="trainer-text">
-            <!-- tp Le lien H5 à modifier, uniquement dispo en user_level = 2 'admin', proposer un lien alternative ?  -->
-            <h5><a href="./index.php?page=profil&id=<?php echo $donnees['IdAdherent']; ?>"><?php echo $donnees['Prenom'].' '.$donnees['Nom']; ?></a></h5>
-            <span><?php echo $donnees['cylindree']; ?></span>
-            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem.</p>
-            <div class="trainer-social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-                <?php if($user_level == 2){ ?>
-                    <a href="./index.php?page=membres&action=delete&id=<?php echo $donnees['IdAdherent']; ?>" alt="Supprimer" title="Supprimer"><i class="fa fa-remove"></i></a>
-                <?php } ?>
-            </div>
+<div class="item">
+    <div class="testimony-wrap rounded text-center py-4 pb-5">
+        <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+        </div>
+        <div class="text pt-4">
+            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p class="name"><?php echo $row['Prenom'] . $row['Nom']?></p>
+            <span class="position">Marketing Manager</span>
         </div>
     </div>
 </div>
