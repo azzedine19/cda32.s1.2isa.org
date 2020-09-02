@@ -1,7 +1,7 @@
 <main>
 
     <!-- Breadcrumb Section Begin -->
-    <?php include('./includes/tmpl/head_breadcrumb.php') ?>
+    <?php include('./includes/templ/head_breadcrumb.php') ?>
     <!-- Breadcrumb Section End -->
 
     <section class="spad">
@@ -28,7 +28,5 @@
                 </div>
             </div>
         </div>
-
     </section>
-
 </main>

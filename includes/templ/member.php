@@ -5,7 +5,7 @@
         <div class="text pt-4">
             <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             <p class="name"><?php echo $row['Prenom'] . $row['Nom']?></p>
-            <span class="position">Marketing Manager</span>
+            <span class="position">Membre</span>
         </div>
     </div>
 </div>

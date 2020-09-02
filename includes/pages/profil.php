@@ -2,8 +2,8 @@
 
     <?php
 
-    include('./includes/tmpl/head_breadcrumb.php');
-    include('./includes/tmpl/register.php');
+    include('./includes/templ/head_breadcrumb.php');
+    include('./includes/templ/register.php');
 
     ?>
 

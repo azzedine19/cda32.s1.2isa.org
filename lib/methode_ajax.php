@@ -1,5 +1,9 @@
 <?php
 include('../config/config.php');
+include('../lib/functions.php');
+include('../lib/methode_post.php');
+
+//methode Ajax inscription
 
 function register($data, $bdd) {
     //
@@ -11,8 +15,12 @@ function register($data, $bdd) {
     }else{
         $cyl = '';
     }
+    $hashed_password = hash('sha256', $data->{'Password'});
 
-    $query = "Insert into adherent (Nom, Prenom, DNaiss, Adresse1, CdPost, Ville, Email, Tel, Login, Password, cylindree) values ( '". $data->{'nom'} ."' ,'" . $data->{'prenom'}. "','" . $data->{'dnaiss'}. "','" . $data->{'adresse1'}. "','" . $data->{'CDpostal'}. "','" . $data->{'Ville'}. "','" . $data->{'email'}. "','" . $data->{'Tel'}. "','" . $data->{'login'} . "','" . $data->{'Password'}. "','" . $cyl."')";
+
+
+
+    $query = "Insert into adherent (Nom, Prenom, DNaiss, Adresse1, CdPost, Ville, Email, Tel, Login, Password, cylindree) values ( '". $data->{'nom'} ."' ,'" . $data->{'prenom'}. "','" . $data->{'dnaiss'}. "','" . $data->{'adresse1'}. "','" . $data->{'CDpostal'}. "','" . $data->{'Ville'}. "','" . $data->{'email'}. "','" . $data->{'Tel'}. "','" . $data->{'login'} . "','".$hashed_password."','" . $cyl."')";
 
     $result = $bdd->exec($query);
     if($result > 0) {

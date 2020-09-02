@@ -360,4 +360,12 @@
 
 	})
 })(jQuery);
+ /*------------------
+      Mon Code
+      JQuery/Javascript
+   --------------------*/
+ $('#my-modal .modal-footer button, #my-modal .close').on('click', function(){
 
+	 $("#my-modal").hide();
+
+ });

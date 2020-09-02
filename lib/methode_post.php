@@ -1,12 +1,64 @@
 <?php
+// verification de la présence d'une methode poste (hiden_formulaire qui est =  a connexion )
+if (!empty($_POST) ){
+    if(isset($_POST ['formulaire'])){
+        if($_POST ['formulaire']=='connexion') {
+            //verification de la presence d'un login et d'un mot de passe
+            if(isset($_POST['login'])&& isset($_POST['password'])){
+                if(!empty($_POST['login'])&& !empty($_POST['password'])){
+                    //hash du mot de passe de l'utilisateur
+                    $password = My_Crypt($_POST['password']);
+                    // selection de la ligne sql  correspendante au login /password de l'adherent
+                    $query = 'SELECT IdAdherent,
+                                     Nom,
+                                     Prenom,
+                                     Organisateur
+                                     FROM adherent 
+                                     WHERE Login ="'.$_POST['login'].'" AND Password ="'.$password.'"';
+                    //execution de la requete ci-dessu
+                    $reponse = $bdd ->query($query);
+                    //si la requete renvoie une ligne une seule
+                    if($reponse-> rowCount()==1){
+                        //on distribue(fetch) la reponse sql dans un tableau (variable $donnees)
+                        while($donnees = $reponse->fetch()){
+                            //je stock les valeurs dans des variables
+                            $Nom = $donnees['Nom'];
+                            $Prenom = $donnees['Prenom'];
+                            $Id = $donnees['IdAdherent'];
+                            $Organisateur = $donnees['Organisateur'];
+                            //je stock mes variables dans des sessions
+                            //si l'utilisateur est bien connecté le user_level = 1 , si il est organisateur user_level = 2
+                            $_SESSION['user_level'] = 1 + $Organisateur;
+                            $_SESSION['Nom'] = $Nom;
+                            $_SESSION['Prenom'] = $Prenom;
+                            $_SESSION['Id'] = $Id;
+                            //message succes
+                            $message_modal = ' Bravo '. $Prenom .' vous étes connecté';
+
+                        }
+                    }else{
+                        //si la requete ne trouve pas de ligne message fail
+                        $message_modal = 'Identifiant ou mot de passe invalide';
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
 //test de la super global $_POST si elle n'est pas vide '!empty()'
-if(!empty($_POST)){
+
+/*if(!empty($_POST)){
 
     if (isset($_POST['formulaire'])) {
 
         if ($_POST['formulaire'] == 'register') {
 
             //var_dump($_POST);
+            //hash du mot de passe
 
 
             $droit_image = $_POST["droit_image"] == 'on' ? 1 : 0;
@@ -35,7 +87,7 @@ if(!empty($_POST)){
             cylindree
             ) VALUES (
             "' . $_POST["login"] . '",
-            "' . $_POST["password"] . '",
+            "' . $hashed_password . '",
             "' . $_POST["nom"] . '",
             "' . $_POST["prenom"] . '",
             "' . $_POST["dnaiss"] . '",
@@ -183,7 +235,5 @@ if(!empty($_POST)){
         }
 
 
-
     }
-
 };

@@ -7,17 +7,35 @@
  $pages = $exec->fetchAll();
 
  $menu = "";
- foreach ($pages as $page) {
+foreach ($pages as $page) {
 
-     if ($currentPage == $page["key_file"]) {
-         $currentPageObj = $page;
-         $currentPageClass = "active";
-     } else {
-         $currentPageClass = "";
-     }
+if ($currentPage == $page["key_file"]) {
+    $currentPageObj = $page;
+    $currentPageClass = "active";
+} else {
+    $currentPageClass = "";
+}
+ if (isset($_SESSION['Id']))
+ {
+     $menu = "";
+     $currentPageObj = $page;
+     $currentPageClass = "active";
+    foreach ($NavBar as $key => $value) {
+        if ($currentPage == $key) {
+            $currentPageObj = $page;
+            $currentPageClass = "active";
+        } else {
+            $currentPageClass = "";
+        }
+        $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./index.php?page=' . $key . '" class="nav-link">' . $value . '</a></li>';
+
+    }
+
+ }else{
 
      $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./index.php?page=' . $page["key_file"] . '" class="nav-link">' . $page["menu"] . '</a></li>';
 
+ }
  }
 
 ?>
@@ -67,7 +85,19 @@
             <ul class="navbar-nav ml-auto">
 
                 <?php echo $menu; ?>
+                <?php if(isset($_SESSION['Id'])) { ?>
+                    <div class="dropdown show">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo $_SESSION['Prenom'].' '.$_SESSION['Nom']?>
+                      </a>
 
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="./index.php?page=profil&id=<?php echo $_SESSION['Id'] ?>">Profil</a>
+                        <a class="dropdown-item" href="./index.php?deconnexion=1">Déconnexion</a>
+                      </div>
+                    </div>
+                <?php } ?>
             </ul>
         </div>
     </div>

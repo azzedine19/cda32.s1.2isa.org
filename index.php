@@ -1,5 +1,9 @@
 <?php
+//démarage des sessions
+session_start();
+
 include('./config/config.php');
+include('./lib/functions.php');
 /*$ar_pages = array(
     'accueil' => array(
         'title' => 'Bienvenue sur la page d\'accueil de l\'association',

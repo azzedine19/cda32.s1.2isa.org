@@ -29,10 +29,11 @@
                     </div>
                 </div>
             </div>
+            <div class=""col-3"><h1><?php echo $Titre;?></h1></div>
             <div class="col-md-8 block-9 mb-md-5">
                 <form id="register_form" action="#" class="bg-light p-5 contact-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Login" name="login" required>
+                        <input type="text" class="form-control" placeholder="Login" name="login" value="<?php  echo isset($login) ? $login : '' ?>" required>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Nom" name="nom" required>

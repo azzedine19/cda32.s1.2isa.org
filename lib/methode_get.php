@@ -50,66 +50,55 @@ $ar_pages_var['activites'] = array('id_page' => 2, 'key_file' => 'activites');
 //test si la clef de l'url existe, si oui prend la valeur de l'information URL
 if(isset($_GET['page']) && !empty($_GET['page']) ){
 
-    //on verifie que la clef esiste bien dans mon tableau $ar_pages_var (fichier valide)
-    //securité - Fail include
-    if(array_key_exists($_GET['page'], $ar_pages_var)){
-
-        //$page_level = $ar_pages_var[$_GET['page']]['page_level'];
-        $page_level = 0;
-        //parametre de page
-        //verification du niveau de securité de l'affichage de page
-
-        //test level de pages
-        //var_dump($mode_level.' > '.$page_level);
-
-        //est-ce que la page level (droit d'affichage de la page) est ok ?
-        //sinon $page reste accueil
-        if($user_level >=  $page_level){
-            $page = $_GET['page'];
-        }
-
         //gestion des pages
-        if($page == 'profil'){
+        if($_GET['page'] == 'profil'){
 
             if(isset($_GET['id']) && !empty($_GET['id'])){
-
-                //je verifie soit admin soit l'utilisateur qui accede à son profil profil
-                if($_SESSION['id_adherent'] == $_GET['id'] || $user_level == 2){
-
-                    //la requete de la table page
-                    $reponse = $bdd->query('SELECT * FROM adherent WHERE IdAdherent = '.$_GET['id']);
+                if(isset($_SESSION['Id'])) {
 
 
-                    //boucle les données récupérées
-                    while ($donnees = $reponse->fetch()) {
+                    //je verifie soit admin soit l'utilisateur qui accede à son profil profil
+                    if ($_SESSION['Id'] == $_GET['id'] || $_SESSION['User_Level'] == 2) {
 
-                        $identifiant = $donnees['Login'];
-                        $nom = $donnees['Nom'];
-                        $prenom = $donnees['Prenom'];
-                        $login = $donnees['Login'];
-                        $cylindree = $donnees['cylindree'];
-                        //to be continued
+                        //la requete de la table page
+                        $reponse = $bdd->query('SELECT * FROM adherent WHERE IdAdherent = ' . $_GET['id']);
 
-                    }
 
-                    //je transforme le H1 prévu coté BD
-                    $ar_pages_var[$page]['h1'] = $prenom.' '.$nom;
-                    $id = $_GET['id'];
+                        //boucle les données récupérées
+                        while ($donnees = $reponse->fetch()) {
 
-                    $title_register = 'Mise à jour de votre profil';
-                    $btn_register = 'Mettre à jour';
-                    $action = 'update_profil';
+                            $identifiant = $donnees['Login'];
+                            $nom = $donnees['Nom'];
+                            $prenom = $donnees['Prenom'];
+                            $login = $donnees['Login'];
+                            $cylindree = $donnees['cylindree'];
+                            $DateNaiss = $donnees['DNaiss'];
+                            $Adresse = $donnees['Adresse1'];
+                            $CodeP = $donnees['CdPost'];
+                            $Ville = $donnees['Ville'];
+                            $Email = $donnees['Email'];
+                            $Tel = $donnees['Tel'];
+                            //$CC = $donnees['CC'];
+                            $Titre = $prenom . ' ' . $nom;
+                            $Id = $_GET['id'];
+                            //to be continued
 
-                }else{
+                        }
 
-                    //retour page par default
-                    $page = $homepage;
+                        //je transforme le H1 prévu coté BD
+                        $ar_pages_var[$page]['h1'] = $prenom . ' ' . $nom;
 
-                }
+                        $title_register = 'Mise à jour de votre profil';
+                        $btn_register = 'Mettre à jour';
+                        $action = 'update_profil';
 
-            }
+                    }}}
+            }}
 
-        }else if($page == 'informations'){
+
+/*
+
+        else if($page == 'informations'){
 
             if(isset($_GET['action']) && !empty($_GET['action'])){
 
@@ -215,3 +204,4 @@ function test($var1, $var2){
     return 'hello function : v1 ='. $var1.' - v2 = '.$var2;
 
 }
+*/
