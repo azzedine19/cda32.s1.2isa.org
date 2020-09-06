@@ -15,8 +15,8 @@ if ($currentPage == $page["key_file"]) {
 } else {
     $currentPageClass = "";
 }
- if (isset($_SESSION['Id']))
- {
+ //if (isset($_SESSION['Id']))
+ //{
      $menu = "";
      $currentPageObj = $page;
      $currentPageClass = "active";
@@ -31,13 +31,13 @@ if ($currentPage == $page["key_file"]) {
 
     }
 
- }else{
+ }/*else{
 
      $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./index.php?page=' . $page["key_file"] . '" class="nav-link">' . $page["menu"] . '</a></li>';
 
  }
  }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -69,6 +69,8 @@ if ($currentPage == $page["key_file"]) {
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <!--- Summernote Wysiwyg -->
+    <link rel="stylesheet" href="./vendor/summernote-0.8.18-dist/summernote.min.css" type="text/css">
     <!--- Mon fichier css -->
     <link rel="stylesheet" href="css/main.css?v=1.<?php echo time() ?>">
 </head>
@@ -83,8 +85,9 @@ if ($currentPage == $page["key_file"]) {
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-
+                <!--affichage de la boucle du menu basic -->
                 <?php echo $menu; ?>
+                <!--si il ya une session ID (si on est connecté) alors on affiche un menu dropdown avec les categories poiur adherent-->
                 <?php if(isset($_SESSION['Id'])) { ?>
                     <div class="dropdown show">
                       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +100,11 @@ if ($currentPage == $page["key_file"]) {
                         <a class="dropdown-item" href="./index.php?deconnexion=1">Déconnexion</a>
                       </div>
                     </div>
-                <?php } ?>
+                    <!--sinon ( pas de session ouverte) on affiche connexion -->
+                <?php }else{ ?>
+                    <li class="nav-item "><a href="./index.php?page=inscription" class="nav-link">Inscription</a></li>
+                 <li class="nav-item "><a href="./index.php?page=connexion" class="nav-link">Connexion</a></li>
+                <?php }?>
             </ul>
         </div>
     </div>

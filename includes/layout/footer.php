@@ -82,6 +82,10 @@
 <script src="js/scrollax.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
+<script src="https://kit.fontawesome.com/8fc74ee474.js" crossorigin="anonymous"></script>
+<!-- Wysiwyg -->
+<script src="./vendor/summernote-0.8.18-dist/summernote.min.js"></script>
+<!-- Mon script jquery (main.js) -->
 <script src="js/main.js?v=1.<?php echo time() ?>"></script>
 
 </body>

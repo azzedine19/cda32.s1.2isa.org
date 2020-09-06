@@ -319,7 +319,10 @@
 	  'autoclose': true
 	});
 	$('#time_pick').timepicker();
-
+	/*------------------
+         Mon Code
+         JQuery/Javascript
+      --------------------*/
 	///ajouter mon code ici //
 
 
@@ -359,13 +362,81 @@
 		}
 
 	})
+	$('#update_form').on('submit', (event) => {
+
+		if(document.getElementById("update_form").checkValidity()) {
+			var data = new FormData(document.getElementById("update_form"));
+
+			$.ajax({
+				url: "./lib/methode_ajax.php",
+				data: {action:"update", data: JSON.stringify(Object.fromEntries(data))},
+				method: "POST",
+				dataType: "json"
+			}).then( function(data) {
+
+				$('#my-modal .modal-body p').html(data.data);
+
+				$("#my-modal").show();
+
+			}).catch(err => console.error(err))
+
+			return false;
+		}
+
+	})
 })(jQuery);
- /*------------------
-      Mon Code
-      JQuery/Javascript
-   --------------------*/
+//modal
  $('#my-modal .modal-footer button, #my-modal .close').on('click', function(){
 
 	 $("#my-modal").hide();
+
+ });
+
+ //on verifie que la cible existe avant de lancer le plugin
+ if($('#summernote').length){
+
+	 $('#summernote').summernote({
+		 height: 300,                 // set editor height
+		 minHeight: null,             // set minimum height of editor
+		 maxHeight: null,             // set maximum height of editor
+		 focus: true                  // set focus to editable area after initializing summernote
+	 });
+
+ }
+
+ $('.wysiwyg .primary-btn').on('click', function(){
+
+	 console.log('btn wysiwyg ready !');
+	 var description = $('#summernote').summernote('code');
+	 var title = $('.wysiwyg input[name=title]').val();
+	 description = encodeURI(description);
+	 //methode Ajax
+	 var request = $.ajax({
+		 url: "./lib/methode_ajax.php",
+		 method: "POST",
+		 data: { informations : 1, title:title, description : description },
+		 dataType: "json" //JSON = reponse attendu en array() ou HTML, reponse de type string
+	 });
+
+	 //reussite reponse 200 - Inclu le fait que vous avez pas les permissions requisent
+	 request.done(function( msg ) {
+		 //console.log(msg);
+		 //afichage de la modal ave
+		 $('#my-modal .modal-body p').html(msg.modal);
+
+		 $('#news_breadcrumb').append(msg.tmpl);
+
+		 $("#my-modal").show();
+		 //$( "#log" ).html( msg );
+	 });
+
+	 //erreur 404 ou 500 - le serveur ne repond pas, erreur PHP ?
+	 request.fail(function( jqXHR, textStatus ) {
+		 console.log( "Request failed: " + textStatus );
+	 });
+
+
+	 //stopper le comportement normal d'une balise de type <a>
+	 return false;
 
  });

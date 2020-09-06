@@ -4,6 +4,7 @@
     <?php include('./includes/templ/head_breadcrumb.php') ?>
     <!-- Breadcrumb Section End -->
 
+
     <section class="spad">
         <div class="container">
             <div class="row">
@@ -13,13 +14,13 @@
                         <form action="./index.php?page=connexion" method="post">
                             <input type="hidden" name="formulaire" value="connexion" />
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <input type="text" name="login" placeholder="Votre identifiant">
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <input type="password" name="password" placeholder="Votre mot de passe">
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <button type="submit">Connexion</button>
                                 </div>
                             </div>

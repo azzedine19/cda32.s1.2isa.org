@@ -24,8 +24,14 @@ if(isset($_SESSION['user_level'])){
     $user_level = $_SESSION['user_level'];
 }
 
-//Petite NavBar
-$NavBar = array('accueil'=>'Accueil', 'activites'=>'Activités', 'contact'=>'Contact', 'galerie'=>'Galerie', 'informations'=>'Informations', 'presentation'=>'Présentation', 'members'=>'Membres');
+//Petite NavBar en mode connecté
+$NavBar = array('accueil'=>'Accueil',
+                'activites'=>'Activités',
+                'contact'=>'Contact',
+                'galerie'=>'Galerie',
+                'informations'=>'Informations',
+                'presentation'=>'Présentation',
+                'members'=>'Membres');
 /*
 $bdd = new PDO(
     'mysql:host=localhost:3308;dbname=cda03-bd1;charset=utf8',

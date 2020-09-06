@@ -4,8 +4,10 @@
         </div>
         <div class="text pt-4">
             <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            <p class="name"><?php echo $row['Prenom'] . $row['Nom']?></p>
-            <span class="position">Membre</span>
-        </div>
+            <!-- affichage du Nom et prenom adherent-->
+            <p class="name"><?php echo $row['Prenom'] .' '. $row['Nom']?></p>
+            <?php if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1 ){ ?>
+            <a class="btn-icon-pop fs--1 fw-600" href="./index.php?page=members&action=delete&id=<?php echo $row['IdAdherent']; ?>">Suprimer <span class="fa fa-remove" data-fa-transform="grow-10"></span></a>
+            <?php } ?></div>
     </div>
 </div>

@@ -1,5 +1,29 @@
 <?php
 
+$reponse = $bdd->query('SELECT*FROM page');
+
+$reponse2 = $bdd->query('SELECT*FROM nouvelle');
+
+
+/* Je génère un tableau  */
+
+$TbTitle = array();/* Ma valeur $donnees sur les lignes de ma requête SQL $reponse */
+
+while ($donnees = $reponse->fetch()) {
+    /* Mon $tbTitle avec comme clée chaque valeur de la colonne 'key_file' de mes $donnees sera égale à mes lignes $donnees correspondante */
+    $TbTitle[$donnees['key_file']] = $donnees;
+}
+
+$TbNews = array();
+
+while ($donnees2 = $reponse2->fetch()) {
+    /* Mon $TbNews avec comme clée chaque valeur de la colonne 'IdNouvelle' de mes $donnees2 sera égale à mes lignes $donnees2 correspondante */
+    $TbNews[$donnees2['IdNouvelle']] = $donnees2;
+}
+
+
+
+
 //gere la deconnexion
 if(isset($_GET['deconnexion']) && $_GET['deconnexion'] == 1){
 
@@ -7,24 +31,10 @@ if(isset($_GET['deconnexion']) && $_GET['deconnexion'] == 1){
     session_destroy();
     //on redirige la page apres destroy
     header("location:index.php");
-
 }
 
 
 
-//Initialisation de la variable tableau array() PHP
-$ar_pages_var = array();
-
-//la requete de la table page
-$reponse = $bdd->query('SELECT *  FROM page');
-
-//boucle les données récupérées
-while ($donnees = $reponse->fetch()) {
-
-    //ajout des données par index à la variable tableau $ar_pages_var
-    $ar_pages_var[$donnees['key_file']] = $donnees;
-
-}
 
 /*
  * exemple de construction d'un tableau en PHP
@@ -48,52 +58,89 @@ $ar_pages_var['activites'] = array('id_page' => 2, 'key_file' => 'activites');
 
 //Superglobal $_GET -> récupération de l'information de l'URL ?page=presentation
 //test si la clef de l'url existe, si oui prend la valeur de l'information URL
-if(isset($_GET['page']) && !empty($_GET['page']) ){
+if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
 
-        //gestion des pages
-        if($_GET['page'] == 'profil'){
-
-            if(isset($_GET['id']) && !empty($_GET['id'])){
-                if(isset($_SESSION['Id'])) {
-
-
-                    //je verifie soit admin soit l'utilisateur qui accede à son profil profil
-                    if ($_SESSION['Id'] == $_GET['id'] || $_SESSION['User_Level'] == 2) {
-
-                        //la requete de la table page
-                        $reponse = $bdd->query('SELECT * FROM adherent WHERE IdAdherent = ' . $_GET['id']);
+    //Je vérifie la valeur de ma méthode $_GET['page'] (index.php?page=), je vérifie que la valeur est profil
+    if ($_GET['page'] == 'profil') {
+        //Je vérifie qu'il y a un id qui n'st pas vide
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            //Je vérifie qu'il y a une session id créée pour ensuite vérifier si la session id est la mmême que la $_GET['id]
+            if (isset($_SESSION['Id'])) {
 
 
-                        //boucle les données récupérées
-                        while ($donnees = $reponse->fetch()) {
+                //Soit je suis le même id que le profil que je demande de voir, soit je suis admin
+                if ($_SESSION['Id'] == $_GET['id'] || $_SESSION['user_level'] == 2) {
 
-                            $identifiant = $donnees['Login'];
-                            $nom = $donnees['Nom'];
-                            $prenom = $donnees['Prenom'];
-                            $login = $donnees['Login'];
-                            $cylindree = $donnees['cylindree'];
-                            $DateNaiss = $donnees['DNaiss'];
-                            $Adresse = $donnees['Adresse1'];
-                            $CodeP = $donnees['CdPost'];
-                            $Ville = $donnees['Ville'];
-                            $Email = $donnees['Email'];
-                            $Tel = $donnees['Tel'];
-                            //$CC = $donnees['CC'];
-                            $Titre = $prenom . ' ' . $nom;
-                            $Id = $_GET['id'];
-                            //to be continued
+                    //la requete de la table page
+                    $reponse = $bdd->query('SELECT * FROM adherent WHERE IdAdherent = ' . $_GET['id']);
 
-                        }
 
-                        //je transforme le H1 prévu coté BD
-                        $ar_pages_var[$page]['h1'] = $prenom . ' ' . $nom;
+                    //boucle les données récupérées
+                    while ($donnees = $reponse->fetch()) {
+                        //J'enregistre toutes les valeurs dans des variables (pratique)
+                        $identifiant = $donnees['Login'];
+                        $nom = $donnees['Nom'];
+                        $prenom = $donnees['Prenom'];
+                        $login = $donnees['Login'];
+                        $cylindree = $donnees['cylindree'];
+                        $DateNaiss = $donnees['DNaiss'];
+                        $Adresse = $donnees['Adresse1'];
+                        $CodeP = $donnees['CdPost'];
+                        $Ville = $donnees['Ville'];
+                        $Email = $donnees['Email'];
+                        $Tel = $donnees['Tel'];
+                        //$CC = $donnees['CC'];
+                        $Titre = $prenom . ' ' . $nom;
+                        $Id = $_GET['id'];
+                        //to be continued
 
-                        $title_register = 'Mise à jour de votre profil';
-                        $btn_register = 'Mettre à jour';
-                        $action = 'update_profil';
+                    }
 
-                    }}}
-            }}
+                    $title_register = 'Mise à jour de votre profil';
+                    $btn_register = 'Mettre à jour';
+                    $action = 'update_profil';
+
+                }
+            }
+        }
+    } else if ($_GET['page'] == 'information' && isset($_GET['id']) && !empty($_GET['id'] && array_key_exists($_GET['id'],$TbNews))) {
+        $reponse = $bdd->query('SELECT * FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
+
+        //boucle les données récupérées
+        while ($donnees = $reponse->fetch()) {
+
+            $titrenews = $donnees['Titre'];
+            $contenunews = urldecode($donnees['Texte']);
+            //to be continued
+
+        }
+    }else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
+        $contenunews = '';
+        $titrenews = '';
+    }
+    else{
+        $currentPage = 'informations';
+    }
+}
+//test sur les action de page
+
+//Sinon je redirige l'utilisateur sur la page accueil car :
+//Une des conditions n'est pas remplies ou alors
+//La page n'est pas dans le tableau de mes pages (array_key_exist)
+else{
+    $currentPage = 'accueil';
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
