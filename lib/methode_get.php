@@ -117,19 +117,40 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
     }else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
         $contenunews = '';
         $titrenews = '';
+    }else if ($_GET['page'] == 'members') {
+        if(isset($_GET['action']) && !empty($_GET['action'])){
+
+            //est-ce que l'action c'est delete sur la page membres ?
+            if($_GET['action'] == 'delete') {
+                if (isset($_GET['id']) && !empty($_GET['id'])) {
+                    if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
+                        //lancement de la requete
+                        $bdd->query('DELETE FROM adherent WHERE IdAdherent = ' . $_GET['id']);
+
+                        //information modal html
+                        $message_modal = 'Utilisateur ' . $_GET['id'] . ' supprimé.';
+
+                    } else {
+
+                        $message_modal = 'Vous n\'êtes pas authorisé à réaliser cette action.';
+
+                    }
+                }
+            }
+        }
     }
-    else{
-        $currentPage = 'informations';
-    }
+
+}else{
+    $currentPage = 'accueil';
 }
+
+
 //test sur les action de page
 
 //Sinon je redirige l'utilisateur sur la page accueil car :
 //Une des conditions n'est pas remplies ou alors
 //La page n'est pas dans le tableau de mes pages (array_key_exist)
-else{
-    $currentPage = 'accueil';
-}
+
 
 
 
@@ -196,7 +217,7 @@ else{
 
         }
 
-        //test sur les action de page
+        test sur les action de page
         if(isset($_GET['action']) && !empty($_GET['action'])){
 
             //est-ce que l'action c'est delete sur la page membres ?

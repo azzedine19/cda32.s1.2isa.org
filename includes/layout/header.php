@@ -68,7 +68,8 @@ if ($currentPage == $page["key_file"]) {
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-
+    <!--- Open Street Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
     <!--- Summernote Wysiwyg -->
     <link rel="stylesheet" href="./vendor/summernote-0.8.18-dist/summernote.min.css" type="text/css">
     <!--- Mon fichier css -->
@@ -78,6 +79,7 @@ if ($currentPage == $page["key_file"]) {
 <?php include ('./includes/templ/modal.php');?>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
+        <i class='fas fa-motorcycle' style='font-size:40px;color:lawngreen;margin-right: 30px'></i>
         <a class="navbar-brand" href="index.php">MC<span>MP</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -95,7 +97,13 @@ if ($currentPage == $page["key_file"]) {
                       </a>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
+                          <!--Compartiment menu admin-->
+                          <?php
+                          if ($_SESSION['user_level'] == 2) {
+                          ?>
+                          <a class="dropdown-item" href="./index.php?page=ajoutnews">Ajouter une information</a>
+                          <?php }?>
+                          <!-- Fin menu admin -->
                         <a class="dropdown-item" href="./index.php?page=profil&id=<?php echo $_SESSION['Id'] ?>">Profil</a>
                         <a class="dropdown-item" href="./index.php?deconnexion=1">Déconnexion</a>
                       </div>

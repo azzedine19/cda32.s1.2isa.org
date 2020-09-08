@@ -3,6 +3,25 @@
 
 //démarage des sessions
 session_start();
+if(isset($_SESSION['Nom'])){
+    if (isset($_COOKIE['ticket']) AND $_COOKIE['ticket'] == $_SESSION['ticket'])
+    {
+        $ticket = session_id().microtime().rand(0,9999999999);
+        $ticket = hash('sha512', $ticket);
+        $_SESSION['ticket'] = $ticket;
+        setcookie('ticket', $ticket, time() + (60 * 10)); // Expire au bout de 20 min
+
+    }
+    else
+    {
+        // On détruit la session
+        //$_SESSION = array();
+        session_destroy();
+        unset($_COOKIE['ticket']);
+        header('location:index.php');
+    }
+}
+
 include('../config/config.php');
 include('../lib/functions.php');
 include('../lib/methode_post.php');
@@ -112,7 +131,6 @@ if(isset($_POST["action"])) {
 }
 
 $msg = array();
-
 if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 
     if(!empty($_POST)) {
@@ -123,10 +141,12 @@ if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 
                 $query = 'INSERT INTO nouvelle(
                 Titre,
-                Texte                
+                Texte,
+                DPubli                
                 ) VALUES (
                 "'.$_POST["title"].'",
-                "'.$_POST["description"].'"            
+                "'.$_POST["description"].'",
+                NOW()            
             )';
 
                 $bdd->query($query);
@@ -146,16 +166,18 @@ if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 
 
 
+//return valeur json/Ajax
+                echo json_encode($msg);
             }
 
         }
 
     }
-
 }else{
 
     $msg['modal'] = 'Vous n\'etes pas authorisé à appeller cette methode.';
 
-}
 //return valeur json/Ajax
-echo json_encode($msg);
+    echo json_encode($msg);
+}
+

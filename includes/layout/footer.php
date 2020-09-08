@@ -83,6 +83,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="https://kit.fontawesome.com/8fc74ee474.js" crossorigin="anonymous"></script>
+<!--- Open Street Map -->
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
 <!-- Wysiwyg -->
 <script src="./vendor/summernote-0.8.18-dist/summernote.min.js"></script>
 <!-- Mon script jquery (main.js) -->

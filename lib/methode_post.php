@@ -27,6 +27,19 @@ if (!empty($_POST) ){
                             $Id = $donnees['IdAdherent'];
                             $Organisateur = $donnees['Organisateur'];
                             //je stock mes variables dans des sessions
+                            //
+                                $cookie_name = "ticket";
+                            // On génère quelque chose d'aléatoire
+                                $ticket = session_id().microtime().rand(0,9999999999);
+                            // on hash pour avoir quelque chose de propre qui aura toujours la même forme
+                                $ticket = hash('sha512', $ticket);
+                            // On enregistre des deux cotés
+                            setcookie($cookie_name, $ticket, time() + (60 * 10)); // Expire au bout de 20 min
+                            $_SESSION['ticket'] = $ticket;
+
+                            //session_start();
+
+
                             //si l'utilisateur est bien connecté le user_level = 1 , si il est organisateur user_level = 2
                             $_SESSION['user_level'] = 1 + $Organisateur;
                             $_SESSION['Nom'] = $Nom;
@@ -34,7 +47,7 @@ if (!empty($_POST) ){
                             $_SESSION['Id'] = $Id;
                             //message succes
                             $message_modal = ' Bravo '. $Prenom .' vous étes connecté';
-
+                            $currentPage ='accueil';
                         }
                     }else{
                         //si la requete ne trouve pas de ligne message fail
