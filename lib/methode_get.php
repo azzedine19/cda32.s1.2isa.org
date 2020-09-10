@@ -103,16 +103,32 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
                 }
             }
         }
-    } else if ($_GET['page'] == 'information' && isset($_GET['id']) && !empty($_GET['id'] && array_key_exists($_GET['id'],$TbNews))) {
+    } else if ($_GET['page'] == 'information') {
+        if (isset($_GET['id']) && !empty($_GET['id'] && array_key_exists($_GET['id'],$TbNews))) {
         $reponse = $bdd->query('SELECT * FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
 
         //boucle les données récupérées
         while ($donnees = $reponse->fetch()) {
 
             $titrenews = $donnees['Titre'];
-            $contenunews = urldecode($donnees['Texte']);
+            $contenunews = $donnees['Texte'];
+            $photo = $donnees['Fichier'];
             //to be continued
 
+        }if (isset($_GET['action']) && !empty($_GET['action'])){
+            if($_GET['action'] == 'delete') {
+                if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
+                    //lancement de la requete
+                    $bdd->query('DELETE FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
+                    $message_modal = 'Nouvelle ' . $_GET['id'] . ' supprimée.';
+                    $currentPage = 'informations';
+                }else {
+                    $message_modal = 'Vous n\'êtes pas autorisé à réaliser cette action.';
+                }
+            }
+        }
+        }else {
+            $currentPage = 'informations';
         }
     }else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
         $contenunews = '';
@@ -132,7 +148,7 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
 
                     } else {
 
-                        $message_modal = 'Vous n\'êtes pas authorisé à réaliser cette action.';
+                        $message_modal = 'Vous n\'êtes pas autorisé à réaliser cette action.';
 
                     }
                 }

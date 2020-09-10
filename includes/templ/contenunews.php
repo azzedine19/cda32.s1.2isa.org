@@ -3,6 +3,13 @@
         <div class="row">
             <div class="col-md-8 ftco-animate">
                 <h2 class="mb-3"><?php echo $titrenews; ?></h2>
+                <?php
+                if ($photo == ' ') {
+                ?>
+                <img src='images/image_1.jpg'>
+                <?php
+                }
+                ?>
                 <h4 class="mb-3"><?php echo $contenunews ?></h4>
                 <div class="tag-widget post-tag-container mb-5 mt-5">
                     <div class="tagcloud">

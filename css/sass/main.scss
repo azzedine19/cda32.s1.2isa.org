@@ -34,3 +34,10 @@ main{
 #map2{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
   height:400px;
 }
+
+.imgsize{
+  width: auto; /* or any custom size */
+  height: 960px;
+  /* Garde la proportionnalité de l'image */
+  object-fit: contain;
+}

@@ -25,6 +25,7 @@ while ($donnees = $reponse->fetch()) {
     $idnews = $donnees['IdNouvelle'];
     $titrenews = $donnees['Titre'];
     $datenews = $donnees['DPubli'];
+    $photo = $donnees['Fichier'];
     //On inclus newsolo pour l'affichage de l'aperçu de la news.
 
     include('./includes/templ/newsolo.php');

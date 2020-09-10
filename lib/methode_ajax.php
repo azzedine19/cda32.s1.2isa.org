@@ -3,7 +3,7 @@
 
 //démarage des sessions
 session_start();
-if(isset($_SESSION['Nom'])){
+/*if(isset($_SESSION['Nom'])){
     if (isset($_COOKIE['ticket']) AND $_COOKIE['ticket'] == $_SESSION['ticket'])
     {
         $ticket = session_id().microtime().rand(0,9999999999);
@@ -20,12 +20,12 @@ if(isset($_SESSION['Nom'])){
         unset($_COOKIE['ticket']);
         header('location:index.php');
     }
-}
+}*/
 
 include('../config/config.php');
 include('../lib/functions.php');
 include('../lib/methode_post.php');
-
+$msg = array();
 //methode Ajax inscription
 //fonction register
 function register($data, $bdd) {
@@ -129,27 +129,30 @@ if(isset($_POST["action"])) {
             break;
         }
 }
-
-$msg = array();
-if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
+else if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 
     if(!empty($_POST)) {
 
         if (isset($_POST['informations']) && $_POST['informations'] == 1) {
 
             if(isset($_POST['description']) && !empty($_POST['description'])){
-
-                $query = 'INSERT INTO nouvelle(
+                if(isset($_POST['photo']) && null!==$_POST['photo']) {
+                    $fichier = $_POST['photo'];
+                }else {
+                    $fichier = ' ';
+                }
+                $query = $bdd->prepare('INSERT INTO nouvelle(
                 Titre,
                 Texte,
-                DPubli                
-                ) VALUES (
-                "'.$_POST["title"].'",
-                "'.$_POST["description"].'",
-                NOW()            
-            )';
+                DPubli,
+                Fichier                
+                ) VALUES ( :title, :description, NOW(), :fichier )');
 
-                $bdd->query($query);
+                $query->execute(Array(
+                  "title" => $_POST["title"],
+                  "description" => $_POST["description"],
+                  "fichier" => $fichier
+                ));
 
                 //$bdd->lastInsertId() recupere l'id créé automatiquement
                 $donnees['IdNouvelle']= $bdd->lastInsertId();
@@ -174,7 +177,7 @@ if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 
     }
 }else{
-
+    // si il est pas admin
     $msg['modal'] = 'Vous n\'etes pas authorisé à appeller cette methode.';
 
 //return valeur json/Ajax

@@ -354,6 +354,7 @@
 
 				$('#my-modal .modal-body p').html(data.data);
 
+
 				$("#my-modal").show();
 
 			}).catch(err => console.error(err))
@@ -409,12 +410,12 @@
 	 console.log('btn wysiwyg ready !');
 	 var description = $('#summernote').summernote('code');
 	 var title = $('.wysiwyg input[name=title]').val();
-	 description = encodeURI(description);
+	 var photo =$('img').attr('src');
 	 //methode Ajax
 	 var request = $.ajax({
 		 url: "./lib/methode_ajax.php",
 		 method: "POST",
-		 data: { informations : 1, title:title, description : description },
+		 data: { informations : 1, title:title, description : description, photo : photo },
 		 dataType: "json" //JSON = reponse attendu en array() ou HTML, reponse de type string
 	 });
 
