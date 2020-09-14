@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-7 text-center heading-section ftco-animate">
-                    <span class="subheading">Testimonial</span>
-                    <h2 class="mb-3">Happy Clients</h2>
+                    <span class="subheading">Liste des membres</span>
+                    <h2 class="mb-3">Nos chers membres</h2>
                 </div>
             </div>
             <div class="row ftco-animate">

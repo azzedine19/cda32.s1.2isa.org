@@ -169,14 +169,17 @@ else if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 
 
 
-//return valeur json/Ajax
+                //return valeur json/Ajax
                 echo json_encode($msg);
             }
 
         }
 
     }
-}else{
+
+}
+
+else{
     // si il est pas admin
     $msg['modal'] = 'Vous n\'etes pas authorisé à appeller cette methode.';
 

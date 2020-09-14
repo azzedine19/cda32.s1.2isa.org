@@ -3,7 +3,7 @@
         <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
         </div>
         <div class="text pt-4">
-            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p class="mb-4">Bienvenue cher membre.</p>
             <!-- affichage du Nom et prenom adherent-->
             <p class="name"><?php echo $row['Prenom'] .' '. $row['Nom']?></p>
             <?php if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1 ){ ?>

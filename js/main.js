@@ -363,22 +363,24 @@
 		}
 
 	})
+	//des l'istant que je clique sur submit alors le code suivant est execute
 	$('#update_form').on('submit', (event) => {
-
+	//on cree un formdata contenant tous les champs input
 		if(document.getElementById("update_form").checkValidity()) {
 			var data = new FormData(document.getElementById("update_form"));
-
+			// on fais appelle a Ajax avec comme data le nom de l'action qui nous servira et le tableau Json de toute les données du formulaire
 			$.ajax({
 				url: "./lib/methode_ajax.php",
 				data: {action:"update", data: JSON.stringify(Object.fromEntries(data))},
 				method: "POST",
 				dataType: "json"
+				//si la fonction passe bien
 			}).then( function(data) {
-
+				//data = echo json encode
 				$('#my-modal .modal-body p').html(data.data);
 
 				$("#my-modal").show();
-
+			//si ya err retourne faux 
 			}).catch(err => console.error(err))
 
 			return false;

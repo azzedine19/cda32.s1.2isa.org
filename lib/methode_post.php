@@ -1,4 +1,7 @@
 <?php
+//Je charge PHP Mailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 // verification de la présence d'une methode poste (hiden_formulaire qui est =  a connexion )
 if (!empty($_POST) ){
     if(isset($_POST ['formulaire'])){
@@ -55,6 +58,53 @@ if (!empty($_POST) ){
                     }
                 }
             }
+        }else if($_POST['formulaire']=='mail') {
+
+
+
+require './lib/vendor/PHPMailer-master/src/Exception.php';
+require './lib/vendor/PHPMailer-master/src/PHPMailer.php';
+require './lib/vendor/PHPMailer-master/src/SMTP.php';
+$body = $_POST['body'];
+$subject = $_POST['subject'];
+$expediteur = $_POST['expediteur'];
+$mailer = $_POST['mail'];
+$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+try {
+    //Server settings
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'cda32.s1@gmail.com';                 // SMTP username
+    $mail->Password = 'Motoclubcda32';                           // SMTP password
+    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom('cda32.s1@gmail.com', 'Azzedine');
+    $mail->addAddress('cda32.s1@gmail.com', 'Azzedine');     // Add a recipient
+//    $mail->addAddress('patrick.nardi@2isa.org');               // Name is optional
+    $mail->addReplyTo($mailer, $expediteur);
+//    $mail->addCC('jean-yves.fontenil@2isa.org');
+//    $mail->addBCC('pauline.ivaldi-rancurel@2isa.org');
+
+    //Attachments
+//    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+//    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+    //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = $subject.' de '.$expediteur;
+    $mail->Body    = $body;
+//    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    $message_modal = 'Le mail a bien été envoyé';
+} catch (Exception $e) {
+    $message_modal = 'Un problème est survenu'.' '.$mail->ErrorInfo;
+}
+
         }
     }
 }

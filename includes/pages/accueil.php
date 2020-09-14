@@ -291,4 +291,3 @@
     </div>
 </section>
 </main>
-<?php include ('./includes/templ/member_test.php') ?>

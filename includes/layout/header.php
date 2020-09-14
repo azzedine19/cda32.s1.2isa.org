@@ -27,7 +27,7 @@ if ($currentPage == $page["key_file"]) {
         } else {
             $currentPageClass = "";
         }
-        $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./index.php?page=' . $key . '" class="nav-link">' . $value . '</a></li>';
+        $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./page-' . $key . '" class="nav-link">' . $value . '</a></li>';
 
     }
 
@@ -101,17 +101,17 @@ if ($currentPage == $page["key_file"]) {
                           <?php
                           if ($_SESSION['user_level'] == 2) {
                           ?>
-                          <a class="dropdown-item" href="./index.php?page=ajoutnews">Ajouter une information</a>
+                          <a class="dropdown-item" href="./page-ajoutnews">Ajouter une information</a>
                           <?php }?>
                           <!-- Fin menu admin -->
-                        <a class="dropdown-item" href="./index.php?page=profil&id=<?php echo $_SESSION['Id'] ?>">Profil</a>
-                        <a class="dropdown-item" href="./index.php?deconnexion=1">Déconnexion</a>
+                        <a class="dropdown-item" href="./page-profil-<?php echo $_SESSION['Id'] ?>">Profil</a>
+                        <a class="dropdown-item" href="./deconnexion-1">Déconnexion</a>
                       </div>
                     </div>
                     <!--sinon ( pas de session ouverte) on affiche connexion -->
                 <?php }else{ ?>
-                    <li class="nav-item "><a href="./index.php?page=inscription" class="nav-link">Inscription</a></li>
-                 <li class="nav-item "><a href="./index.php?page=connexion" class="nav-link">Connexion</a></li>
+                    <li class="nav-item "><a href="./page-inscription" class="nav-link">Inscription</a></li>
+                 <li class="nav-item "><a href="./page-connexion" class="nav-link">Connexion</a></li>
                 <?php }?>
             </ul>
         </div>
