@@ -8,7 +8,7 @@
                 <div class="text w-100 text-center mb-md-5 pb-md-5">
                     <h1 class="mb-4">Moto Club Millau Passion</h1>
                     <p style="font-size: 18px;">Nous somme une association de passionnés de moto qui propose à ses adhérents de nombreuses activités et principalement des randonnées. </p>
-                    <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+                    <a href="https://vimeo.com/82208745" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
                         <div class="icon d-flex align-items-center justify-content-center">
                             <span class="ion-ios-play"></span>
                         </div>

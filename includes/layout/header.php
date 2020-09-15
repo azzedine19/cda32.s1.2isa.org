@@ -74,12 +74,27 @@ if ($currentPage == $page["key_file"]) {
     <link rel="stylesheet" href="./vendor/summernote-0.8.18-dist/summernote.min.css" type="text/css">
     <!--- Mon fichier css -->
     <link rel="stylesheet" href="css/main.css?v=1.<?php echo time() ?>">
+    <!-- Matomo -->
+    <script type="text/javascript">
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//cda32.s1.2isa.org/matomo/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <body>
 <?php include ('./includes/templ/modal.php');?>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <i class='fas fa-motorcycle' style='font-size:40px;color:lawngreen;margin-right: 30px'></i>
+        <i class='fas fa-motorcycle' style='font-size:40px;color:mediumspringgreen;margin-right: 30px'></i>
         <a class="navbar-brand" href="index.php">MC<span>MP</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
