@@ -47,7 +47,8 @@ if ($currentPage == $page["key_file"]) {
     <meta name="description" content="<?php echo $currentPageObj["metadescription"]?>"/>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-
+    <link rel="icon" type="image/png" sizes="128x128" href="./images/favicons/bike.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicons/bike.ico">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
