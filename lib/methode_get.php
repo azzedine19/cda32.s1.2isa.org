@@ -84,7 +84,7 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
                         $login = $donnees['Login'];
                         $cylindree = $donnees['cylindree'];
                         $DateNaiss = $donnees['DNaiss'];
-                        $Adresse = $donnees['Adresse1'];
+                        $Adresse = $donnees['Adresse1']; 
                         $CodeP = $donnees['CdPost'];
                         $Ville = $donnees['Ville'];
                         $Email = $donnees['Email'];
