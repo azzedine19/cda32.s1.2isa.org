@@ -41,3 +41,12 @@ main{
   /* Garde la proportionnalité de l'image */
   object-fit: contain;
 }
+/* image upload activité */
+#upload-img {
+  border: 1px solid;
+  width: 35%;
+  &:hover{
+    background-color: rgba(0,0,0,0.4);
+    cursor: pointer;
+  }
+}

@@ -1,8 +1,8 @@
 <?php
 
-$reponse = $bdd->query('SELECT*FROM page');
+$reponse = $bdd->query('SELECT * FROM page');
 
-$reponse2 = $bdd->query('SELECT*FROM nouvelle');
+$reponse2 = $bdd->query('SELECT * FROM nouvelle');
 
 
 /* Je génère un tableau  */
@@ -84,7 +84,7 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
                         $login = $donnees['Login'];
                         $cylindree = $donnees['cylindree'];
                         $DateNaiss = $donnees['DNaiss'];
-                        $Adresse = $donnees['Adresse1']; 
+                        $Adresse = $donnees['Adresse1'];
                         $CodeP = $donnees['CdPost'];
                         $Ville = $donnees['Ville'];
                         $Email = $donnees['Email'];
@@ -104,40 +104,41 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
             }
         }
     } else if ($_GET['page'] == 'information') {
-        if (isset($_GET['id']) && !empty($_GET['id'] && array_key_exists($_GET['id'],$TbNews))) {
-        $reponse = $bdd->query('SELECT * FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
+        if (isset($_GET['id']) && !empty($_GET['id'] && array_key_exists($_GET['id'], $TbNews))) {
+            $reponse = $bdd->query('SELECT * FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
 
-        //boucle les données récupérées
-        while ($donnees = $reponse->fetch()) {
+            //boucle les données récupérées
+            while ($donnees = $reponse->fetch()) {
 
-            $titrenews = $donnees['Titre'];
-            $contenunews = $donnees['Texte'];
-            $photo = $donnees['Fichier'];
-            //to be continued
+                $titrenews = $donnees['Titre'];
+                $contenunews = $donnees['Texte'];
+                $photo = $donnees['Fichier'];
+                //to be continued
 
-        }if (isset($_GET['action']) && !empty($_GET['action'])){
-            if($_GET['action'] == 'delete') {
-                if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
-                    //lancement de la requete
-                    $bdd->query('DELETE FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
-                    $message_modal = 'Nouvelle ' . $_GET['id'] . ' supprimée.';
-                    $currentPage = 'informations';
-                }else {
-                    $message_modal = 'Vous n\'êtes pas autorisé à réaliser cette action.';
+            }
+            if (isset($_GET['action']) && !empty($_GET['action'])) {
+                if ($_GET['action'] == 'delete') {
+                    if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
+                        //lancement de la requete
+                        $bdd->query('DELETE FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
+                        $message_modal = 'Nouvelle ' . $_GET['id'] . ' supprimée.';
+                        $currentPage = 'informations';
+                    } else {
+                        $message_modal = 'Vous n\'êtes pas autorisé à réaliser cette action.';
+                    }
                 }
             }
-        }
-        }else {
+        } else {
             $currentPage = 'informations';
         }
-    }else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
+    } else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
         $contenunews = '';
         $titrenews = '';
-    }else if ($_GET['page'] == 'members') {
-        if(isset($_GET['action']) && !empty($_GET['action'])){
+    } else if ($_GET['page'] == 'members') {
+        if (isset($_GET['action']) && !empty($_GET['action'])) {
 
             //est-ce que l'action c'est delete sur la page membres ?
-            if($_GET['action'] == 'delete') {
+            if ($_GET['action'] == 'delete') {
                 if (isset($_GET['id']) && !empty($_GET['id'])) {
                     if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
                         //lancement de la requete
@@ -154,6 +155,15 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
                 }
             }
         }
+    }
+    else if (isset($_POST['formulaire']) &&  $_POST['formulaire'] == 'activite') {
+        $query = 'INSERT INTO activite ( IntituleActivite,DDebut,DFin,Description,TarifAdherent,TarifInvite,DLimite,IdAdherent,Idtype)
+        VALUES (?,?,?,?,?,?,?,?,?)';
+        $reponse = $bdd->prepare($query);
+        $result = $reponse->execute(array($_POST["IntituleActivite"],$_POST["DDebut"],$_POST["DFin"],$_POST["Description"],$_POST["TarifAdherent"],$_POST["TarifInvite"],$_POST["DLimite"],
+            $_POST["IdAdherent"], $_POST["IdType"]));
+
+        $message_modal = 'L\'activité a bien était ajoutée .';
     }
 
 }else{

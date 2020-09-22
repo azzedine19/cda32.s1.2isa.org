@@ -442,10 +442,25 @@
 	 //stopper le comportement normal d'une balise de type <a>
 	 return false;
 
-
-
  });
 
+ $("#upload-img").on("click", function(){
+	 $("#upload-img-input").click();
+ })
+ $("#upload-img-input").change(function() {
+ 	readURL(this)
+ })
+
+ $("#add-activite-submit").on('click', function () {
+ 	var form  = $("#add-activite-form");
+ 	var description =  $('#summernote').summernote('code');
+
+ 	$('#summernote').val(description);
+ 	form.submit();
+
+
+ 	return false;
+ })
  // On initialise la latitude et la longitude de Paris (centre de la carte)
  var lat = 44.10018;
  var lon = 3.05301;
@@ -470,6 +485,16 @@
 	 }).addTo(macarte);
 	 var marker = L.marker([lat, lon]).addTo(macarte);
 
+ }
 
-
+ function readURL(input) {
+	 if (input.files && input.files[0]) {
+		 var reader = new FileReader();
+		 reader.onload = function(e) {
+			 $('#upload-img').attr("src", e.target.result);
+			 $('#upload-img').hide();
+			 $('#upload-img').fadeIn(650);
+		 }
+		 reader.readAsDataURL(input.files[0]);
+	 }
  }

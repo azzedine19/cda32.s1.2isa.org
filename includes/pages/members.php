@@ -4,17 +4,14 @@
 
     <section class="ftco-section testimony-section bg-light">
         <div class="container">
-            <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-12">
                 <div class="col-md-7 text-center heading-section ftco-animate">
                     <span class="subheading">Liste des membres</span>
                     <h2 class="mb-3">Nos chers membres</h2>
                 </div>
             </div>
             <div class="row ftco-animate">
-                <div class="col-md-12">
-                    <div class="carousel-testimony owl-carousel ftco-owl">
-
-
+                <div class="col-6">
 
     <?php
 
@@ -30,7 +27,6 @@
     }
 
     ?>
-                    </div>
                 </div>
             </div>
         </div>

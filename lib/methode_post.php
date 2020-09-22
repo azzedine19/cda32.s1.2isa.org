@@ -5,6 +5,16 @@ use PHPMailer\PHPMailer\Exception;
 // verification de la présence d'une methode poste (hiden_formulaire qui est =  a connexion )
 if (!empty($_POST) ){
     if(isset($_POST ['formulaire'])){
+        if($_POST ['formulaire'] == "activite") {
+            $query = 'INSERT INTO activite ( IntituleActivite,DDebut,DFin,Description,TarifAdherent,TarifInvite,DLimite,IdAdherent,Idtype,ImageAct)
+            VALUES (?,?,?,?,?,?,?,?,?,?)';
+            $reponse = $bdd->prepare($query);
+            $result = $reponse->execute(array($_POST["IntituleActivite"],$_POST["DDebut"],$_POST["DFin"],$_POST["Description"],$_POST["TarifAdherent"],$_POST["TarifInvite"],$_POST["DLimite"],
+                $_POST["IdAdherent"], $_POST["IdType"],$_POST["ImageAct"]));
+
+            $message_modal = 'L\'activité a bien était ajoutée .';
+            //var_dump($_POST);
+        }
         if($_POST ['formulaire']=='connexion') {
             //verification de la presence d'un login et d'un mot de passe
             if(isset($_POST['login'])&& isset($_POST['password'])){
@@ -57,8 +67,19 @@ if (!empty($_POST) ){
                         $message_modal = 'Identifiant ou mot de passe invalide';
                     }
                 }
-            }
-        }else if($_POST['formulaire']=='mail') {
+            } }
+
+//       else if($_POST['formulaire'] == 'activite' ){
+//
+//            $query = 'INSERT INTO activite ( IntituleActivite,DDebut,DFin,Description,TarifAdherent,TarifInvite,DLimite,IdAdherent,IdType)
+//            VALUES (?,?,?,?,?,?,?,?,?)';
+//            $reponse5 = $bdd->prepare($query);
+//            $result2 = $reponse5->execute(array($_POST["IntituleActivite"],$_POST["DDebut"],$_POST["DFin"],$_POST["Description"],$_POST["TarifAdherent"],$_POST["TarifInvite"],$_POST["DLimite"],
+//                $_POST["IdAdherent"],$_POST["Type"]));
+//            $message_modal = 'Votre activité a bien etait ajouté';
+//
+
+        else if($_POST['formulaire']=='mail') {
 
 
 

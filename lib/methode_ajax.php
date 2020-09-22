@@ -178,7 +178,6 @@ else if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
     }
 
 }
-
 else{
     // si il est pas admin
     $msg['modal'] = 'Vous n\'etes pas authorisé à appeller cette methode.';

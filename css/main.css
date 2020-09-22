@@ -1,1 +1,59 @@
-main .member_test{background:#e8cbc0;background:-webkit-linear-gradient(to right, #e8cbc0, #636fa4);background:linear-gradient(to right, #e8cbc0, #636fa4);min-height:100vh}main .social-link{width:30px;height:30px;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;color:#666;border-radius:50%;transition:all 0.3s;font-size:0.9rem}main .social-link:hover,main .social-link:focus{background:#ddd;text-decoration:none;color:#555}#map2{height:400px}.imgsize{width:auto;height:800px;object-fit:contain}
+@charset "UTF-8";
+/* line 5, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+main .member_test {
+  background: #e8cbc0;
+  background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+  background: linear-gradient(to right, #e8cbc0, #636fa4);
+  min-height: 100vh;
+}
+
+/* line 12, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+main .social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+/* line 25, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+main .social-link:hover, main .social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
+
+/* line 34, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+#map2 {
+  /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+  height: 400px;
+}
+
+/* line 38, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+.imgsize {
+  width: auto;
+  /* or any custom size */
+  height: 960px;
+  /* Garde la proportionnalité de l'image */
+  object-fit: contain;
+}
+
+/* image upload activité */
+/* line 45, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+#upload-img {
+  border: 1px solid;
+  width: 35%;
+}
+
+/* line 48, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+#upload-img:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=main.css.map */

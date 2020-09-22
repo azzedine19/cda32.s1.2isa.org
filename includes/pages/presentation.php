@@ -50,5 +50,3 @@
         </div>
     </div>
 </section>
-
-    <?php include ('./includes/templ/testimonial.php'); ?>
