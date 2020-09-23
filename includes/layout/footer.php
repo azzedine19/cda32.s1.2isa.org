@@ -2,8 +2,10 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md">
+                <div class="img logo" id="imglogo" style="background-image: url('images/logo.png')">
+                </div>
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2"><a href="#" class="logo">MC<span>MP</span></a></h2>
+                    <p>Suivez nous sur les réseaux sociaux</p>
                     <p>Dans toute gomme il y a un poinçon qui sommeille.</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
@@ -80,8 +82,6 @@
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/jquery.timepicker.min.js"></script>
 <script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
 <script src="https://kit.fontawesome.com/8fc74ee474.js" crossorigin="anonymous"></script>
 <!--- Open Street Map -->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>

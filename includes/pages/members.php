@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row ftco-animate">
-                <div class="col-6">
+
 
     <?php
 
@@ -27,7 +27,6 @@
     }
 
     ?>
-                </div>
             </div>
         </div>
     </section>

@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "connexion.css",
+	"sources": [
+		"sass/connexion.scss"
+	],
+	"sourcesContent": [
+		"#connexion {\r\n  .spad{\r\n    text-align: center;\r\n  }\r\n  .row {\r\n    margin-top: 100px;\r\n    margin-bottom: 100px;\r\n    text-align: center;\r\n  }\r\n  button{\r\n    border: yellow;\r\n    margin-top: 15px;\r\n    color: yellow;\r\n    font-size: 20px;\r\n    background-color: firebrick;\r\n    size: 100px;\r\n  }\r\n  h4{\r\n    font-family: \"Arial Black\";\r\n    font-size: 30px;\r\n  }\r\n\r\n}\r\n"
+	],
+	"names": [],
+	"mappings": ";AAAA,AACE,UADQ,CACR,KAAK,CAAA;EACH,UAAU,EAAE,MAAM;CACnB;;;AAHH,AAIE,UAJQ,CAIR,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,aAAa,EAAE,KAAK;EACpB,UAAU,EAAE,MAAM;CACnB;;;AARH,AASE,UATQ,CASR,MAAM,CAAA;EACJ,MAAM,EAAE,MAAM;EACd,UAAU,EAAE,IAAI;EAChB,KAAK,EAAE,MAAM;EACb,SAAS,EAAE,IAAI;EACf,gBAAgB,EAAE,SAAS;EAC3B,IAAI,EAAE,KAAK;CACZ;;;AAhBH,AAiBE,UAjBQ,CAiBR,EAAE,CAAA;EACA,WAAW,EAAE,aAAa;EAC1B,SAAS,EAAE,IAAI;CAChB"
+}

@@ -1,4 +1,40 @@
 @charset "UTF-8";
+/* line 2, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/_footer.scss */
+footer .logo {
+  width: 260px;
+  height: 250px;
+  margin-top: -250px;
+  margin-left: -300px;
+}
+
+/* line 2, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/connexion.scss */
+#connexion .spad {
+  text-align: center;
+}
+
+/* line 5, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/connexion.scss */
+#connexion .row {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+/* line 10, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/connexion.scss */
+#connexion button {
+  border: yellow;
+  margin-top: 15px;
+  color: yellow;
+  font-size: 20px;
+  background-color: firebrick;
+  size: 100px;
+}
+
+/* line 18, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/connexion.scss */
+#connexion h4 {
+  font-family: "Arial Black";
+  font-size: 30px;
+}
+
 /* line 5, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
 main .member_test {
   background: #e8cbc0;

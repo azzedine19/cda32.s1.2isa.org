@@ -5,7 +5,7 @@
     <!-- Breadcrumb Section End -->
 
 
-    <section class="spad">
+    <section id="connexion" class="spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -20,7 +20,7 @@
                                 <div class="col-lg-12">
                                     <input type="password" name="password" placeholder="Votre mot de passe">
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <button type="submit">Connexion</button>
                                 </div>
                             </div>
@@ -31,3 +31,5 @@
         </div>
     </section>
 </main>
+</head>
+<body>

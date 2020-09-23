@@ -2,23 +2,25 @@
 //Je charge PHP Mailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 // verification de la présence d'une methode poste (hiden_formulaire qui est =  a connexion )
-if (!empty($_POST) ){
-    if(isset($_POST ['formulaire'])){
-        if($_POST ['formulaire'] == "activite") {
+if (!empty($_POST)) {
+    if (isset($_POST ['formulaire'])) {
+        if ($_POST ['formulaire'] == "activite") {
+            list($fileName) = UploadFile($_FILES["ImageAct"], "uploads/images/activites/");
             $query = 'INSERT INTO activite ( IntituleActivite,DDebut,DFin,Description,TarifAdherent,TarifInvite,DLimite,IdAdherent,Idtype,ImageAct)
             VALUES (?,?,?,?,?,?,?,?,?,?)';
             $reponse = $bdd->prepare($query);
-            $result = $reponse->execute(array($_POST["IntituleActivite"],$_POST["DDebut"],$_POST["DFin"],$_POST["Description"],$_POST["TarifAdherent"],$_POST["TarifInvite"],$_POST["DLimite"],
-                $_POST["IdAdherent"], $_POST["IdType"],$_POST["ImageAct"]));
+            $result = $reponse->execute(array($_POST["IntituleActivite"], $_POST["DDebut"], $_POST["DFin"], $_POST["Description"], $_POST["TarifAdherent"], $_POST["TarifInvite"], $_POST["DLimite"],
+                $_POST["IdAdherent"], $_POST["IdType"], $fileName));
 
             $message_modal = 'L\'activité a bien était ajoutée .';
             //var_dump($_POST);
         }
-        if($_POST ['formulaire']=='connexion') {
+        else if ($_POST ['formulaire'] == 'connexion') {
             //verification de la presence d'un login et d'un mot de passe
-            if(isset($_POST['login'])&& isset($_POST['password'])){
-                if(!empty($_POST['login'])&& !empty($_POST['password'])){
+            if (isset($_POST['login']) && isset($_POST['password'])) {
+                if (!empty($_POST['login']) && !empty($_POST['password'])) {
                     //hash du mot de passe de l'utilisateur
                     $password = My_Crypt($_POST['password']);
                     // selection de la ligne sql  correspendante au login /password de l'adherent
@@ -27,13 +29,13 @@ if (!empty($_POST) ){
                                      Prenom,
                                      Organisateur
                                      FROM adherent 
-                                     WHERE Login ="'.$_POST['login'].'" AND Password ="'.$password.'"';
+                                     WHERE Login ="' . $_POST['login'] . '" AND Password ="' . $password . '"';
                     //execution de la requete ci-dessu
-                    $reponse = $bdd ->query($query);
+                    $reponse = $bdd->query($query);
                     //si la requete renvoie une ligne une seule
-                    if($reponse-> rowCount()==1){
+                    if ($reponse->rowCount() == 1) {
                         //on distribue(fetch) la reponse sql dans un tableau (variable $donnees)
-                        while($donnees = $reponse->fetch()){
+                        while ($donnees = $reponse->fetch()) {
                             //je stock les valeurs dans des variables
                             $Nom = $donnees['Nom'];
                             $Prenom = $donnees['Prenom'];
@@ -41,11 +43,11 @@ if (!empty($_POST) ){
                             $Organisateur = $donnees['Organisateur'];
                             //je stock mes variables dans des sessions
                             //
-                                $cookie_name = "ticket";
+                            $cookie_name = "ticket";
                             // On génère quelque chose d'aléatoire
-                                $ticket = session_id().microtime().rand(0,9999999999);
+                            $ticket = session_id() . microtime() . rand(0, 9999999999);
                             // on hash pour avoir quelque chose de propre qui aura toujours la même forme
-                                $ticket = hash('sha512', $ticket);
+                            $ticket = hash('sha512', $ticket);
                             // On enregistre des deux cotés
                             setcookie($cookie_name, $ticket, time() + (60 * 10)); // Expire au bout de 20 min
                             $_SESSION['ticket'] = $ticket;
@@ -59,72 +61,60 @@ if (!empty($_POST) ){
                             $_SESSION['Prenom'] = $Prenom;
                             $_SESSION['Id'] = $Id;
                             //message succes
-                            $message_modal = ' Bravo '. $Prenom .' vous étes connecté';
-                            $currentPage ='accueil';
+                            $message_modal = ' Bravo ' . $Prenom . ' vous étes connecté';
+                            $currentPage = 'accueil';
                         }
-                    }else{
+                    } else {
                         //si la requete ne trouve pas de ligne message fail
                         $message_modal = 'Identifiant ou mot de passe invalide';
                     }
                 }
-            } }
+            }
+        }
+        else if ($_POST['formulaire'] == 'mail') {
 
-//       else if($_POST['formulaire'] == 'activite' ){
-//
-//            $query = 'INSERT INTO activite ( IntituleActivite,DDebut,DFin,Description,TarifAdherent,TarifInvite,DLimite,IdAdherent,IdType)
-//            VALUES (?,?,?,?,?,?,?,?,?)';
-//            $reponse5 = $bdd->prepare($query);
-//            $result2 = $reponse5->execute(array($_POST["IntituleActivite"],$_POST["DDebut"],$_POST["DFin"],$_POST["Description"],$_POST["TarifAdherent"],$_POST["TarifInvite"],$_POST["DLimite"],
-//                $_POST["IdAdherent"],$_POST["Type"]));
-//            $message_modal = 'Votre activité a bien etait ajouté';
-//
+            require './lib/vendor/PHPMailer-master/src/Exception.php';
+            require './lib/vendor/PHPMailer-master/src/PHPMailer.php';
+            require './lib/vendor/PHPMailer-master/src/SMTP.php';
+            $body = $_POST['body'];
+            $subject = $_POST['subject'];
+            $expediteur = $_POST['expediteur'];
+            $mailer = $_POST['mail'];
+            $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+            try {
+                //Server settings
+                $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'cda32.s1@gmail.com';                 // SMTP username
+                $mail->Password = 'Motoclubcda32';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
 
-        else if($_POST['formulaire']=='mail') {
-
-
-
-require './lib/vendor/PHPMailer-master/src/Exception.php';
-require './lib/vendor/PHPMailer-master/src/PHPMailer.php';
-require './lib/vendor/PHPMailer-master/src/SMTP.php';
-$body = $_POST['body'];
-$subject = $_POST['subject'];
-$expediteur = $_POST['expediteur'];
-$mailer = $_POST['mail'];
-$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-try {
-    //Server settings
-    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'cda32.s1@gmail.com';                 // SMTP username
-    $mail->Password = 'Motoclubcda32';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('cda32.s1@gmail.com', 'Azzedine');
-    $mail->addAddress('cda32.s1@gmail.com', 'Azzedine');     // Add a recipient
+                //Recipients
+                $mail->setFrom('cda32.s1@gmail.com', 'Azzedine');
+                $mail->addAddress('cda32.s1@gmail.com', 'Azzedine');     // Add a recipient
 //    $mail->addAddress('patrick.nardi@2isa.org');               // Name is optional
-    $mail->addReplyTo($mailer, $expediteur);
+                $mail->addReplyTo($mailer, $expediteur);
 //    $mail->addCC('jean-yves.fontenil@2isa.org');
 //    $mail->addBCC('pauline.ivaldi-rancurel@2isa.org');
 
-    //Attachments
+                //Attachments
 //    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 //    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
-    //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = $subject.' de '.$expediteur;
-    $mail->Body    = $body;
+                //Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = $subject . ' de ' . $expediteur;
+                $mail->Body = $body;
 //    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-    $mail->send();
-    $message_modal = 'Le mail a bien été envoyé';
-} catch (Exception $e) {
-    $message_modal = 'Un problème est survenu'.' '.$mail->ErrorInfo;
-}
+                $mail->send();
+                $message_modal = 'Le mail a bien été envoyé';
+            } catch (Exception $e) {
+                $message_modal = 'Un problème est survenu' . ' ' . $mail->ErrorInfo;
+            }
 
         }
     }

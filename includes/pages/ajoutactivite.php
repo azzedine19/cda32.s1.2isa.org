@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row d-flex mb-5">
         <div class="col-12 block-9 mb-md-5">
-            <form id="add-activite-form" class="bg-light p-5 " method="post">
+            <form id="add-activite-form" class="bg-light p-5 " method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="formulaire" value="activite">
                 <div class="form-group">
                     <input type="number" class="form-control" name="IdAdherent" placeholder="Id Admin">
@@ -14,12 +14,15 @@
                     <input type="text" class="form-control" name="IntituleActivite" placeholder="Intitulé de l'activité">
                 </div>
                 <div class="form-group">
+                    <label for="Description">Date de début</label>
                     <input type="datetime-local" class="form-control" name="DDebut" placeholder="Date de début">
                 </div>
                 <div class="form-group">
+                    <label for="Description">Date de fin</label>
                     <input type="datetime-local" class="form-control" name="DFin" placeholder="Date de fin">
                 </div>
                 <div class="form-group">
+                    <label for="Description">Date limite pour s'inscrire</label>
                     <input type="datetime-local" class="form-control" name="DLimite" placeholder="Date limite pour s'inscrire">
                 </div>
                 <div class="form-group">
