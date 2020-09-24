@@ -103,7 +103,8 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
                 }
             }
         }
-    } else if ($_GET['page'] == 'information') {
+    }
+    else if ($_GET['page'] == 'information') {
         if (isset($_GET['id']) && !empty($_GET['id'] && array_key_exists($_GET['id'], $TbNews))) {
             $reponse = $bdd->query('SELECT * FROM nouvelle WHERE IdNouvelle = ' . $_GET['id']);
 
@@ -131,10 +132,19 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
         } else {
             $currentPage = 'informations';
         }
-    } else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
+    }
+    else if ($_GET['page']== 'activite') {
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            $query = $bdd->prepare('SELECT * FROM activite WHERE IdActivite = :id');
+            $query->execute(array(':id' => $_GET['id']));
+            $donnees = $query->fetch();
+        }
+    }
+    else if ($_GET['page'] == 'ajoutnews' && isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
         $contenunews = '';
         $titrenews = '';
-    } else if ($_GET['page'] == 'members') {
+    }
+    else if ($_GET['page'] == 'members') {
         if (isset($_GET['action']) && !empty($_GET['action'])) {
 
             //est-ce que l'action c'est delete sur la page membres ?
@@ -156,17 +166,31 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
             }
         }
     }
-    else if (isset($_POST['formulaire']) &&  $_POST['formulaire'] == 'activite') {
-        $query = 'INSERT INTO activite ( IntituleActivite,DDebut,DFin,Description,TarifAdherent,TarifInvite,DLimite,IdAdherent,Idtype)
-        VALUES (?,?,?,?,?,?,?,?,?)';
-        $reponse = $bdd->prepare($query);
-        $result = $reponse->execute(array($_POST["IntituleActivite"],$_POST["DDebut"],$_POST["DFin"],$_POST["Description"],$_POST["TarifAdherent"],$_POST["TarifInvite"],$_POST["DLimite"],
-            $_POST["IdAdherent"], $_POST["IdType"]));
+    else if ($_GET['page'] == 'activites') {
+        if (isset($_GET['action']) && !empty($_GET['action'])) {
 
-        $message_modal = 'L\'activité a bien était ajoutée .';
+            //est-ce que l'action c'est delete sur la page activite ?
+            if ($_GET['action'] == 'delete') {
+                if (isset($_GET['id']) && !empty($_GET['id'])) {
+                    if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
+                        //lancement de la requete
+                        $bdd->query('DELETE FROM activite WHERE IdActivite = ' . $_GET['id']);
+
+                        //information modal html
+                        $message_modal = 'Activite ' . $_GET['id'] . ' supprimée.';
+
+                    } else {
+
+                        $message_modal = 'Vous n\'êtes pas autorisé à réaliser cette action.';
+
+                    }
+                }
+            }
+        }
     }
+}
+else{
 
-}else{
     $currentPage = 'accueil';
 }
 
@@ -176,9 +200,6 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
 //Sinon je redirige l'utilisateur sur la page accueil car :
 //Une des conditions n'est pas remplies ou alors
 //La page n'est pas dans le tableau de mes pages (array_key_exist)
-
-
-
 
 
 

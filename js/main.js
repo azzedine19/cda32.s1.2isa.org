@@ -443,14 +443,14 @@
 	 return false;
 
  });
-
+//uplod image js
  $("#upload-img").on("click", function(){
 	 $("#upload-img-input").click();
  })
  $("#upload-img-input").change(function() {
  	readURL(this)
  })
-
+//recuperation des données du wysiwyg
  $("#add-activite-submit").on('click', function () {
  	var form  = $("#add-activite-form");
  	var description =  $('#summernote').summernote('code');

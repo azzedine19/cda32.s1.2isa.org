@@ -5,11 +5,11 @@
                 <div class="img logo" id="imglogo" style="background-image: url('images/logo.png')">
                 </div>
                 <div class="ftco-footer-widget mb-4">
-                    <p>Suivez nous sur les réseaux sociaux</p>
                     <p>Dans toute gomme il y a un poinçon qui sommeille.</p>
+                    <p>Suivez nous sur les réseaux sociaux</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="https://www.facebook.com/motomillau12100/"><span class="icon-facebook"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
                     </ul>
                 </div>

@@ -3,8 +3,8 @@
 footer .logo {
   width: 260px;
   height: 250px;
-  margin-top: -250px;
-  margin-left: -300px;
+  margin-top: -40%;
+  margin-left: 0px;
 }
 
 /* line 2, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/connexion.scss */
@@ -33,6 +33,17 @@ footer .logo {
 #connexion h4 {
   font-family: "Arial Black";
   font-size: 30px;
+}
+
+/* line 1, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/activite.scss */
+#activite-details {
+  margin-top: 10px;
+  padding: 20px;
+}
+
+/* line 4, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/activite.scss */
+#activite-details h2 {
+  background-color: darkred;
 }
 
 /* line 5, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
@@ -72,9 +83,9 @@ main .social-link:hover, main .social-link:focus {
 
 /* line 38, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
 .imgsize {
-  width: auto;
+  width: 100%;
   /* or any custom size */
-  height: 960px;
+  height: 60%;
   /* Garde la proportionnalité de l'image */
   object-fit: contain;
 }
@@ -90,6 +101,18 @@ main .social-link:hover, main .social-link:focus {
 #upload-img:hover {
   background-color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
+}
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 1px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 58, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+  .ftco-section img, .imgsize {
+    width: 100% !important;
+    /* or any custom size */
+    height: 45% !important;
+    /* Garde la proportionnalité de l'image */
+    object-fit: contain;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

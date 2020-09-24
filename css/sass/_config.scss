@@ -7,6 +7,8 @@ $color1: #ffffff;
 $color2: #1d4fa5;
 $color3:rgba(100, 99, 100, 0.5);
 $color4: #972aee;
+$color5:red;
+$color6:yellow;
 
 @import 'member';
 @import 'button';
@@ -14,3 +16,4 @@ $color4: #972aee;
 @import 'query';
 @import 'footer';
 @import 'connexion';
+@import 'activite';

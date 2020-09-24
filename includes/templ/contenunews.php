@@ -6,7 +6,7 @@
                 <?php
                 if ($photo == ' ') {
                 ?>
-                <img src='images/image_1.jpg'>
+                <img src='images/image_1.jpg' class='imgsize'>
                 <?php
                 }
                 ?>

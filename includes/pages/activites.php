@@ -17,10 +17,15 @@
                                 <?php
                                 $reponse = $bdd->query('SELECT * FROM activite ORDER BY DDebut DESC LIMIT 16');
                                 while ($donnees = $reponse->fetch()) {
-                                    include('./includes/templ/testactivite.php');
+                                    include('./includes/templ/activitesolo.php');
                                 }?>
                             </div>
-                        </div></div></div></div></section>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 <section class="ftco-section ftco-intro" style="background-image: url(images/bg_3.jpg);">
     <div class="overlay"></div>

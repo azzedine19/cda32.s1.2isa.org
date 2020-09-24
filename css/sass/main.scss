@@ -36,8 +36,8 @@ main{
 }
 
 .imgsize{
-  width: auto; /* or any custom size */
-  height: 960px;
+  width: 100%; /* or any custom size */
+  height: 60%;
   /* Garde la proportionnalité de l'image */
   object-fit: contain;
 }
@@ -48,5 +48,17 @@ main{
   &:hover{
     background-color: rgba(0,0,0,0.4);
     cursor: pointer;
+  }
+}
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 1px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
+  .ftco-section img,.imgsize{
+    width: 100% !important; /* or any custom size */
+    height: 45% !important;
+    /* Garde la proportionnalité de l'image */
+    object-fit: contain;
   }
 }
