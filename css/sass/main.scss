@@ -62,3 +62,19 @@ and (-webkit-min-device-pixel-ratio: 2) {
     object-fit: contain;
   }
 }
+.wysiwyg-content {
+  img {
+    width: 100% !important;
+  }
+}
+.img,
+.blog-img,
+.user-img {
+ background-size: contain;
+}
+#activitesolo{
+  text-align: center;
+}
+#descriptionact{
+  color: darkslategrey;
+}

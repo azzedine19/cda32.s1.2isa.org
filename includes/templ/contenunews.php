@@ -10,7 +10,7 @@
                 <?php
                 }
                 ?>
-                <h4 class="mb-3"><?php echo $contenunews ?></h4>
+                <h4 class="mb-3 wysiwyg-content"><?php echo $contenunews ?></h4>
                 <div class="tag-widget post-tag-container mb-5 mt-5">
                     <div class="tagcloud">
                         <a href="#" class="tag-cloud-link">Life</a>

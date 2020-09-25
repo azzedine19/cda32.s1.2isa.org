@@ -43,6 +43,7 @@ footer .logo {
 
 /* line 4, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/activite.scss */
 #activite-details h2 {
+  text-align: center;
   background-color: darkred;
 }
 
@@ -113,6 +114,28 @@ main .social-link:hover, main .social-link:focus {
     /* Garde la proportionnalité de l'image */
     object-fit: contain;
   }
+}
+
+/* line 66, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+.wysiwyg-content img {
+  width: 100% !important;
+}
+
+/* line 70, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+.img,
+.blog-img,
+.user-img {
+  background-size: contain;
+}
+
+/* line 75, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+#activitesolo {
+  text-align: center;
+}
+
+/* line 78, ../../../../wamp64/www/cda32.s1.2isa.org/css/sass/main.scss */
+#descriptionact {
+  color: darkslategrey;
 }
 
 /*# sourceMappingURL=main.css.map */

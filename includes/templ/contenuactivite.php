@@ -5,7 +5,9 @@
             <span class="img rounded d-flex align-items-md-end" style="background-image: url('uploads/images/activites/<?= $donnees['ImageAct'] ;?>')"></span>
         </div>
         <div class="text-black-50">
-            <h2 class="mb-2"><a href="#"></a><?php echo $donnees['IntituleActivite'] ;?></h2>
+            <div style="display:flex;" class="flex-column justify-content-center align-items-center">
+                <h2 class="mb-2"><a href="#"></a><?php echo $donnees['IntituleActivite'] ;?></h2>
+            </div>
             <div>
                 <span class="cat"><?php echo $donnees['Description'] ;?></span>
                 <div>
