@@ -17,6 +17,16 @@ if (!empty($_POST)) {
             $message_modal = 'L\'activité a bien était ajoutée .';
             //var_dump($_POST);
         }
+        elseif ($_POST ['formulaire'] == "photo"){
+                list($fileName) = UploadFile($_FILES["Fichier"], $galerie,["image"]);
+                $query = 'INSERT INTO photo (Titre,Fichier,IdAdherent,IdActivite)
+            VALUES (?,?,?,?)';
+                $reponse = $bdd->prepare($query);
+                $result = $reponse->execute(array($_POST["Titre"], $fileName, $_POST["IdAdherent"], $_POST["IdActivite"]));
+
+                $message_modal = 'La photo a bien était ajoutée .';
+            //var_dump($_POST);
+        }
         else if ($_POST ['formulaire'] == 'connexion') {
             //verification de la presence d'un login et d'un mot de passe
             if (isset($_POST['login']) && isset($_POST['password'])) {

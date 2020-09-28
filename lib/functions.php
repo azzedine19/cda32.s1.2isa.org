@@ -111,11 +111,20 @@ function UploadFile($file, $destination, $types = null) {
 
     $key = array_search($type, $MimeTypes);
 
-    $real_name = uniqid("image_") . "." . $key;
+    $nameArray = explode(".", $name); //array("01","JGP") -> 2 élements
+    $lastIndex = count($nameArray) - 1;//total des éléments (2) mais je veux trouver le dernier index
+$extention = strtolower($nameArray[$lastIndex]);//deux elements dans le tb, mais -1 pour l'index du dernier element car index commence a zero
 
-    move_uploaded_file($tmp_name, $destination . $real_name);
 
-    return array($real_name);
+$photoName = time() . "." . $extention;
+
+
+    //$real_name = uniqid("image_") . "." . $key;
+
+    move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'].$destination . $photoName);
+
+    return array($photoName);
+
 }
 
 

@@ -498,3 +498,9 @@
 		 reader.readAsDataURL(input.files[0]);
 	 }
  }
+
+ $("#add-photo-submit").on('click', function () {
+	 var form = $("#add-photo-form");
+	 form.submit();
+	 return false;
+ })
