@@ -29,9 +29,6 @@ $msg = array();
 //methode Ajax inscription
 //fonction register
 function register($data, $bdd) {
-    //
-    $login = $data->{"login"};
-    $nom = $data->{"nom"};
 
     if(isset($data->{'cylindree'})){
         $cyl = $data->{'cylindree'};
@@ -39,9 +36,17 @@ function register($data, $bdd) {
         $cyl = '';
     }
     $hashed_password = hash('sha256', $data->{'Password'});
-
-
-    $query = "Insert into adherent (Nom, Prenom, DNaiss, Adresse1, CdPost, Ville, Email, Tel, Login, Password, cylindree) values ( '". $data->{'nom'} ."' ,'" . $data->{'prenom'}. "','" . $data->{'dnaiss'}. "','" . $data->{'adresse1'}. "','" . $data->{'CDpostal'}. "','" . $data->{'Ville'}. "','" . $data->{'email'}. "','" . $data->{'Tel'}. "','" . $data->{'login'} . "','".$hashed_password."','" . $cyl."')";
+    $query = "Insert into adherent (Nom, Prenom, DNaiss, Adresse1, CdPost, Ville, Email, Tel, Login, Password, cylindree) 
+values 
+    ( '". $data->{'nom'} ."' ,
+    '" . $data->{'prenom'}. "',
+    '" . $data->{'dnaiss'}. "',
+    '" . $data->{'adresse1'}. "',
+    '" . $data->{'CDpostal'}. "',
+    '" . $data->{'Ville'}. "',
+    '" . $data->{'email'}. "',
+    '" . $data->{'Tel'}. "','" . $data->{'login'} . "',
+    '".$hashed_password."','" . $cyl."')";
 
     $result = $bdd->exec($query);
     if($result > 0) {
@@ -59,38 +64,58 @@ function update($data, $bdd) {
     }else{
         $cyl = '';
     }
+
     $hashed_password = hash('sha256', $data->{'Password'});
 
     //Si j'ai une session d'ouverte et ue le "&id=" (Get de l'id) est égal à mon id de session (que je suis bien sur l'id qui m'appartient)
     //Ou que je suis admin
     //Alors je peux updater le profil (soit le mien, soit celui de quelqu'un d'autre à condition que je sois admin)
-    if (isset($_SESSION['Id']) && isset($_GET['id']) && ($_SESSION['Id'] == $_GET['id'] || $_SESSION['user_level'] > 1)) {
+    if (isset($_SESSION['Id']) && ($_SESSION['Id'] == $data->{"id"} || $_SESSION['user_level'] > 1)) {
 
         $query = 'update adherent set  
-                    Nom = "' . $data->{'nom'} . '",
-                    Prenom = "' . $data->{'prenom'} . '",
-                    DNaiss = "' . $data->{'dnaiss'} . '",
-                    Adresse1 = "' . $data->{'adresse1'} . '",
-                    CdPost = "' . $data->{'CDpostal'} . '",
-                    Ville = "' . $data->{'Ville'} . '",
-                    Email = "' . $data->{'email'} . '",
-                    Tel = "' . $data->{'Tel'} . '",
-                    Login = "' . $data->{'login'} . '",
-                    Password = "' . $hashed_password . '",
-                    cylindree = "' . $cyl . '"
-    where IdAdherent = "' . $data->{'id'} . '"';
+                    Nom = :nom,
+                    Prenom = :prenom,
+                    DNaiss = :dNaiss,
+                    Adresse1 = :adresse1,
+                    CdPost = :cdPost,
+                    Ville = :ville,
+                    Email = :email,
+                    Tel = :tel,
+                    Login = :login,
+                    Password = :password,
+                    cylindree = :cylindree
+    where IdAdherent = :id;';
 
-        $result = $bdd->exec($query);
+        $stmt = $bdd->prepare($query);
+
+        $result = $stmt->execute(array(
+            "nom" => $data->{"nom"},
+            "prenom" => $data->{"prenom"},
+            "dNaiss" => $data->{"dnaiss"},
+            "adresse1" => $data->{"adresse1"},
+            "cdPost" => $data->{"CDpostal"},
+            "ville" => $data->{"Ville"},
+            "email" => $data->{"email"},
+            "tel" => $data->{"Tel"},
+            "login" => $data->{"login"},
+            "password" => $hashed_password,
+            "cylindree" => $data->{"cylindree"},
+            "id" => $data->{"id"},
+        ));
+
+
         if ($result > 0) {
             return true;
         } else return false;
     }
     else {
         $message_modal = 'Vous n\'êtes pas autorisé à lancer cet update!';
+        return false;
     }
+    return false;
 }
 
-
+// le case register est bon, $result  = ma fonction register et je passe en post les data
 if(isset($_POST["action"])) {
     switch ($_POST["action"]) {
         case "register":
@@ -100,6 +125,7 @@ if(isset($_POST["action"])) {
                     'success' => $result,
                     'data' => 'Votre inscription a bien été prise en compte'
                 );
+                // j'envoie le resultat au client avec json retour faire un objet Json
                 echo json_encode($retour);
             } catch (Exception $e) {
                 $retour = array(

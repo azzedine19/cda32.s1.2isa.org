@@ -15,8 +15,7 @@ if ($currentPage == $page["key_file"]) {
 } else {
     $currentPageClass = "";
 }
- //if (isset($_SESSION['Id']))
- //{
+
      $menu = "";
      $currentPageObj = $page;
      $currentPageClass = "active";
@@ -31,8 +30,11 @@ if ($currentPage == $page["key_file"]) {
 
     }
 
- }/*else{
+ }
 
+/*else{
+//if (isset($_SESSION['Id']))
+ //{
      $menu .= '<li class="nav-item '.$currentPageClass.'"><a href="./index.php?page=' . $page["key_file"] . '" class="nav-link">' . $page["menu"] . '</a></li>';
 
  }
@@ -95,7 +97,7 @@ if ($currentPage == $page["key_file"]) {
 <?php include ('./includes/templ/modal.php');?>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <i class='fas fa-motorcycle' style='font-size:40px;color:red;margin-right: 30px'></i>
+        <i class='fas fa-motorcycle' style='font-size:40px;color:springgreen;margin-right: 30px'></i>
         <a class="navbar-brand" href="index.php">MC<span>MP</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -117,8 +119,9 @@ if ($currentPage == $page["key_file"]) {
                           <?php
                           if ($_SESSION['user_level'] == 2) {
                           ?>
-                          <a class="dropdown-item" href="./page-ajoutnews">Ajouter une information</a>
+                              <a class="dropdown-item " href="./page-ajoutnews">Ajouter une information</a>
                               <a class="dropdown-item" href="./page-ajoutactivite">Ajouter une activité</a>
+                              <a class="dropdown-item" href="./page-ajoutphoto">Ajouter une photo</a>
                           <?php }?>
                           <!-- Fin menu admin -->
                         <a class="dropdown-item" href="./page-profil-<?php echo $_SESSION['Id'] ?>">Profil</a>

@@ -59,6 +59,7 @@ include('./includes/templ/head_breadcrumb.php');
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
+                <div id="map2"></div>
             </div>
         </div>
     </div>
