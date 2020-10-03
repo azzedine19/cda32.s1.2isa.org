@@ -341,12 +341,8 @@
 	}
 
 	$('#register_form').on('submit', (event) => {
-
 		if(document.getElementById("register_form").checkValidity()) {
-			//new formdata un objet qui prends un paramétre de type fprme HTML pour pouvoir lire les données dans ce foormulaire
 			var data = new FormData(document.getElementById("register_form"));
-//coté client
-			// j'envoie au serveur les données l'action c'est register et lle dat c'est le formulaire
 			$.ajax({
 				url: "./lib/methode_ajax.php",
 				data: {action:"register", data: JSON.stringify(Object.fromEntries(data))},
@@ -356,18 +352,14 @@
 				if(data.success) {
 					$('#my-modal .modal-body p').html(data.data);
 					$("#my-modal").show();
-
 				}
 				else {
 					$('#my-modal .modal-body p').html("Une erreur s'est produite veuillez réessayer !");
 					$("#my-modal").show();
 				}
-
 			}).catch(err => console.error(err))
-
 			return false;
 		}
-
 	})
 	//des l'istant que je clique sur submit alors le code suivant est execute
 	$('#update_form').on('submit', (event) => {

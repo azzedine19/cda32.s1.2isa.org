@@ -26,7 +26,6 @@ while ($donnees2 = $reponse2->fetch()) {
 
 //gere la deconnexion
 if(isset($_GET['deconnexion']) && $_GET['deconnexion'] == 1){
-
     //on détruit la session
     session_destroy();
     //on redirige la page apres destroy
@@ -173,6 +172,7 @@ if(isset($_GET['page']) && array_key_exists($_GET['page'],$TbTitle) ) {
             if ($_GET['action'] == 'delete') {
                 if (isset($_GET['id']) && !empty($_GET['id'])) {
                     if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 2) {
+                        //vérification qu'aucunes photos ne soient associées à l'activité
                         //lancement de la requete
                         $bdd->query('DELETE FROM activite WHERE IdActivite = ' . $_GET['id']);
 

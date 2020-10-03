@@ -13,7 +13,7 @@
         <p>
             <a href="page-information-<?php echo $idnews; ?>" class="btn btn-primary mb-4">Consulter <span class="icon-long-arrow-right"></span></a>
             <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) { ?>
-            <a href="page-information-<?php echo $idnews; ?>-delete" class="btn btn-danger">Supprimer <span class="icon-long-arrow-right"></span></a>
+            <a href="page-information-<?php echo $idnews; ?>-delete" class="btn btn-danger mb-4">Supprimer <span class="icon-long-arrow-right"></span></a>
             <?php } ?>
         </p>
     </div>

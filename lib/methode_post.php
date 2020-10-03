@@ -18,7 +18,7 @@ if (!empty($_POST)) {
             //var_dump($_POST);
         }
         elseif ($_POST ['formulaire'] == "photo"){
-                list($fileName) = UploadFile($_FILES["Fichier"], $galerie,["image"]);
+                list($fileName) = UploadFile($_FILES["Fichier"], $galerie_folder,["image"]);
                 $query = 'INSERT INTO photo (Titre,Fichier,IdAdherent,IdActivite)
             VALUES (?,?,?,?)';
                 $reponse = $bdd->prepare($query);
@@ -34,18 +34,21 @@ if (!empty($_POST)) {
                     //hash du mot de passe de l'utilisateur
                     $password = My_Crypt($_POST['password']);
                     // selection de la ligne sql  correspendante au login /password de l'adherent
-                    $query = 'SELECT IdAdherent,
+                    $query = $bdd->prepare('SELECT IdAdherent,
                                      Nom,
                                      Prenom,
                                      Organisateur
                                      FROM adherent 
-                                     WHERE Login ="' . $_POST['login'] . '" AND Password ="' . $password . '"';
+                                     WHERE Login = ? AND Password = ?');
+                    $query->execute(array(
+                        $_POST['login'],
+                        $password
+                    ));
                     //execution de la requete ci-dessu
-                    $reponse = $bdd->query($query);
                     //si la requete renvoie une ligne une seule
-                    if ($reponse->rowCount() == 1) {
+                    if ($query->rowCount() == 1) {
                         //on distribue(fetch) la reponse sql dans un tableau (variable $donnees)
-                        while ($donnees = $reponse->fetch()) {
+                        while ($donnees = $query->fetch()) {
                             //je stock les valeurs dans des variables
                             $Nom = $donnees['Nom'];
                             $Prenom = $donnees['Prenom'];

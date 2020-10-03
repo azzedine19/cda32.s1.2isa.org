@@ -5,10 +5,21 @@
             <form id="add-activite-form" class="bg-light p-5 " method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="formulaire" value="activite">
                 <div class="form-group">
-                    <input type="number" class="form-control" name="IdAdherent" placeholder="Id Admin">
+                    <input type="hidden" class="form-control" name="IdAdherent" value="<?php echo $_SESSION['Id']; ?>">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="IdType" placeholder="Id Type d'activité">
+                    <label class="col-12" for="activitetype">Type d'activité</label>
+                    <select name="IdType" id="IdType">
+                        <?php
+                        //la requete
+                        $Reponse = $bdd->query('SELECT * FROM type_activite');
+                        //boucle les données récupérées
+                        while ($Donnees = $Reponse->fetch()) {
+                            ?>
+                            <option value="<?php echo $Donnees['IdType']; ?>"><?php echo $Donnees['IntituleType']; ?></option>
+                            <?php
+                        } ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="IntituleActivite" placeholder="Intitulé de l'activité">

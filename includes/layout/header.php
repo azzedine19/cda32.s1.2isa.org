@@ -109,7 +109,7 @@ if ($currentPage == $page["key_file"]) {
                 <?php echo $menu; ?>
                 <!--si il ya une session ID (si on est connecté) alors on affiche un menu dropdown avec les categories poiur adherent-->
                 <?php if(isset($_SESSION['Id'])) { ?>
-                    <div class="dropdown show">
+                    <div class="dropdown show mt-2">
                       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo $_SESSION['Prenom'].' '.$_SESSION['Nom']?>
                       </a>
@@ -122,6 +122,7 @@ if ($currentPage == $page["key_file"]) {
                               <a class="dropdown-item " href="./page-ajoutnews">Ajouter une information</a>
                               <a class="dropdown-item" href="./page-ajoutactivite">Ajouter une activité</a>
                               <a class="dropdown-item" href="./page-ajoutphoto">Ajouter une photo</a>
+                              <a class="dropdown-item" href="./matomo/index.php">Statistiques du site</a>
                           <?php }?>
                           <!-- Fin menu admin -->
                         <a class="dropdown-item" href="./page-profil-<?php echo $_SESSION['Id'] ?>">Profil</a>

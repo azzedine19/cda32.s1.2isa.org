@@ -27,13 +27,13 @@
     </section>
 
 
-<section class="ftco-section ftco-intro" style="background-image: url(images/bg_3.jpg);">
+<section class="ftco-section ftco-intro" style="background-image: url(images/viaduc.jpg);">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-md-6 heading-section heading-section-white ftco-animate">
-                <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>
-                <a href="#" class="btn btn-primary btn-lg">Become A Driver</a>
+                <h2 class="mb-3">Voulez vous devenir membre!</h2>
+                <a href="page-inscription" class="btn btn-primary btn-lg">Cliquez ici</a>
             </div>
         </div>
     </div>
